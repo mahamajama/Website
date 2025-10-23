@@ -1,0 +1,111 @@
+
+
+
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  min-width: 120px;
+  max-width: 100%;
+  font-size: 0.9em;
+  font-weight: 420;
+}
+
+.custom-select .previewButton {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background-color: #370eff94;
+  cursor: pointer;
+  color: white;
+  font-size: 0.9em;
+  z-index: 1;
+  box-shadow: 2px 2px 2px #06082025, inset 2px -8px 20px #6dbbff;
+  transition: transform 0.3s cubic-bezier(0,.6,.14,.93), box-shadow 0.6s cubic-bezier(0,.6,.14,.93), background-color 0.6s cubic-bezier(0,.6,.14,.93);
+}
+.custom-select .previewButton:active {
+  transform: translate(0, 2px) scale(0.99);
+}
+
+.custom-select .previewButton:hover {
+  transform: translate(-2px, -2px) scale(1.05);
+  box-shadow: 4px 4px 4px #06082025, inset -3px -5px 20px -1px var(--aqua), inset 3px 2px 16px -2px #202458a6;
+}
+
+.custom-select .select-arrow {
+  border-top: 6px solid #ffffff;
+}
+
+.dropdown-button {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.select-button:hover .select-arrow {
+    transform: scale(1.1);
+}
+
+.select-dropdown {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: #96ffffed;
+  list-style: none;
+  padding: 6px;
+  margin: 0;
+  box-shadow: 0 8px 16px #1f2e4d2b, inset 3px 50px 40px #ae90ffc2;
+  overflow: hidden;
+  z-index: 0;
+  transition: height 0.2s ease-out, padding 0.2s ease-out;
+}
+
+#searchOptionsContainer .select-dropdown {
+  background-color: #9bc7ffe5;
+}
+
+.select-dropdown.hidden {
+  height: 0px;
+  padding: 0 6px;
+}
+
+.select-dropdown::-webkit-scrollbar {
+  width: 7px;
+}
+
+.select-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+
+.select-dropdown::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 25px;
+}
+
+.select-dropdown li {
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Highlight the selected option */
+.select-dropdown li.selected {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.select-dropdown li:hover,
+.select-dropdown li:focus {
+  background-color: #ffffff85;
+  box-shadow: inset 3px -7px 20px 5px rgba(255, 255, 255, 0.836);
+}
+
+
+
+
