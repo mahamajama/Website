@@ -1,4 +1,4 @@
-
+import sound from './audio';
 
 export function expandSection(element) {
   var sectionHeight = element.scrollHeight;
@@ -43,3 +43,47 @@ export const ignoreTransformTransition = (element, targetTransform, delay) => {
     element.style.transform = elementTransform;
   }, delay * 1000);
 }
+
+
+//  MY NAME FUNCTIONS
+
+const blipSound = new sound("sounds/SSB_dot.wav");
+
+export function colorRoulette(e) {
+    const tics = 16;
+    let colors = [
+      '#ff0000', '#ff9900', '#ffff00', '#00ff00',
+      '#00ffff', '#0000ff', '#ff00ff', '#9900ff',
+    ];
+    let currentColor = '#ffffff';
+    function getRandomColor() {
+      const i = Math.floor(Math.random() * colors.length);
+      const newColor = colors[i];
+      colors[i] = currentColor;
+      currentColor = newColor;
+      return currentColor;
+    }
+
+    let i = 0;
+    let delay = 100;
+    function spinColor() {
+      delay *= 1.1;
+      e.target.children[0].children[0].style.color = getRandomColor();
+      i++;
+
+      blipSound.play();
+
+      if (i < tics) {
+        setTimeout(() => {
+          spinColor();
+        }, delay);
+      }
+    }
+
+    spinColor();
+  }
+
+
+
+
+

@@ -4,6 +4,7 @@ export const gameSlice = createSlice({
     name: 'game',
     initialState: {
         isDebugMode: false,
+        
     },
     reducers: {
         setIsDebugMode: (state, action) => {

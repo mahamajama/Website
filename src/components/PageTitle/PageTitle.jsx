@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import './PageTitle.css';
 import PageTitleLetter from './PageTitleLetter';
 
-export default function PageTitle({ title, actions }) {
+export default function PageTitle({ title, actions, children }) {
     const [titleToRender, setTitleToRender] = useState(getTitleToRender);
 
     function getTitleToRender() {
@@ -16,20 +18,21 @@ export default function PageTitle({ title, actions }) {
             const word = words[i];
             for (let j = 0; j < word.length; j++) {
                 let clickAction = null;
-                if (actions && actions[j]) clickAction = actions[letterIndex];
+                if (actions && actions[letterIndex]) clickAction = actions[letterIndex];
+                let letterChildren = null;
+                if (children && children[letterIndex]) letterChildren = children[letterIndex];
                 wordToRender.push(
-                    <PageTitleLetter 
-                        letter={word[j]} 
-                        index={letterIndex} 
-                        onClick={clickAction}
-                        key={`titleLetter_${letterIndex}`}
-                    />
+                    {
+                        letter: word[j],
+                        index: letterIndex,
+                        onClick: clickAction,
+                        children: letterChildren,
+                    }   
                 );
+
                 letterIndex++;
             }
-            wordsToRender.push(
-                <div className="page-title-word" key={`titleWord_${i}`}>{wordToRender}</div>
-            );
+            wordsToRender.push(wordToRender);
         }
 
         return wordsToRender;
@@ -41,7 +44,28 @@ export default function PageTitle({ title, actions }) {
 
     return (
         <div className="page-title">
-            {titleToRender}
+            {titleToRender.map((word, i) => {
+                return (
+                    <div className="page-title-word" key={uuidv4()}>
+                        {word.map(letter => {
+                            return (
+                                <div 
+                                    className='letter-container-container' 
+                                    style={{animationDelay: `${letter.index * 0.25}s`,}} 
+                                    key={uuidv4()}
+                                >
+                                    <PageTitleLetter 
+                                        letter={letter.letter} 
+                                        index={letter.index} 
+                                        onClick={letter.onClick}
+                                    />
+                                    {letter.children}
+                                </div>
+                            );
+                        })}
+                    </div>
+                );
+            })}
         </div>
     );
 }
