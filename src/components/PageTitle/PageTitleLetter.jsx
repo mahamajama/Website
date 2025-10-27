@@ -25,12 +25,14 @@ export default function PageTitleLetter({ letter, index, onClick, children }) {
     let currentTimeout;
     useEffect(() => {
         if (isMounted) {
-            clearTimeout(currentTimeout);
-            currentTimeout = setTimeout(() => {
-                const finalRotation = lettersAreFlipped ? '1620deg' : '0deg';
-                letterElement.current.style.rotate = finalRotation;
-                setIsFlipped(lettersAreFlipped);
-            }, flipDelay)
+            if (letterElement.current) {
+                clearTimeout(currentTimeout);
+                currentTimeout = setTimeout(() => {
+                    const finalRotation = lettersAreFlipped ? '1620deg' : '0deg';
+                    letterElement.current.style.rotate = finalRotation;
+                    setIsFlipped(lettersAreFlipped);
+                }, flipDelay);
+            }
         } else {
             if (letterElement.current) {
                 const finalRotation = lettersAreFlipped ? '1620deg' : '0deg';

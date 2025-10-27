@@ -5,7 +5,10 @@ import './index.css';
 import store from './store';
 import App from './App.jsx';
 
-createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root');
+if (mobileCheck()) root.classList.add('mobile');
+
+createRoot(root).render(
   <StrictMode>
     <Provider store={store}>
       <App />

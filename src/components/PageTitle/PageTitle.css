@@ -82,7 +82,7 @@
 	background-color: red;
 	position: absolute;
 	top: 0.5em;
-	box-shadow: 0 0 20px 5px red;
+	box-shadow: 0 0 20px 8px red;
 	line-height: 1.1;
 	margin: 0;
 	opacity: 0;
@@ -92,7 +92,7 @@
 	}
 
 	&.pulse {
-		animation: bombLightPulse 1s forwards ease-out;
+		animation: bombLightPulse 1s forwards cubic-bezier(.06,.42,.35,.94);
 	}
 }
 
