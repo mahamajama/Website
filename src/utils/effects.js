@@ -29,7 +29,33 @@ export function collapseSection(element, callback = null) {
   });
 }
 
-export const ignoreTransformTransition = (element, targetTransform, delay) => {
+export const ignoreTransition = (element, property, target) => {
+  const elementTransition = element.style.transition;
+
+  element.style.transition = 'none';
+  element.style.setProperty(property, target);
+
+  element.offsetHeight;
+  
+  requestAnimationFrame(() => {
+    element.style.transition = null;
+  });
+}
+
+export const ignoreTransformTransition = (element, targetTransform) => {
+  const elementTransition = element.style.transition;
+
+  element.style.transition = 'none';
+  element.style.transform = targetTransform;
+
+  element.offsetHeight;
+  
+  requestAnimationFrame(() => {
+    element.style.transition = elementTransition;
+  });
+}
+
+export const ignoreTransformTransitionTemp = (element, targetTransform, delay) => {
   const elementTransition = element.style.transition;
   const elementTransform = element.style.transform;
 
@@ -82,7 +108,6 @@ export function colorRoulette(e) {
 
     spinColor();
   }
-
 
 
 

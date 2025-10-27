@@ -12,7 +12,7 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	align-content: center;
-    gap: 20px;
+    gap: 0.5em;
 	overflow: visible;
 	font-size: 5rem;
 }
@@ -24,6 +24,8 @@
 	font-family: 'MyName', 'GloryQuest', 'JetBrainsMono', monospace;
 	font-size: 1em;
 	line-height: 1em;
+	rotate: 0deg;
+	transition: rotate 1.3s cubic-bezier(.09,.5,.43,.96);
 }
 
 .page-title-word {
@@ -150,19 +152,43 @@
 		transform: translate3d(0, 0, 0);
 	}
 	76%{
-		transform: translate3d(0, 60vh, 0);
+		transform: translate3d(0, 40vh, 0);
 		animation-timing-function: cubic-bezier(0,-0.35,.27,1.01);
 	}
 	79%{
-		transform: translate3d(0, 56vh, 0);
+		transform: translate3d(0, 36vh, 0);
 		animation-timing-function: cubic-bezier(.56,.07,.98,.75);
 	}
 	82%{
-		transform: translate3d(0, 60vh, 0);
+		transform: translate3d(0, 40vh, 0);
 		animation-timing-function: cubic-bezier(.16,.05,.81,-0.48);
 	}
 	100%{
-		transform: translate3d(-125vw, 60vh, 0);
+		transform: translate3d(-125vw, 40vh, 0);
+	}
+}
+
+@keyframes letterFlip {
+	0%{
+		animation-timing-function: cubic-bezier(.22,-0.3,.4,.26);
+	}
+	50%{
+		animation-timing-function: cubic-bezier(.42,.59,.34,.99);
+	}
+	100%{
+		rotate: 900deg;
+	}
+}
+
+@keyframes letterResetFlip {
+	0%{
+		animation-timing-function: cubic-bezier(.22,-0.3,.4,.26);
+	}
+	50%{
+		animation-timing-function: cubic-bezier(.42,.59,.34,.99);
+	}
+	100%{
+		rotate: 0deg;
 	}
 }
 

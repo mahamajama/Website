@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { explodeLetter, lettersExploded } from "../../features/Homepage/homeSlice";
+import { explodeLetter, flipLetters } from "../../features/Homepage/homeSlice";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import LetterBomb from '../../components/PageTitle/LetterBomb';
 
@@ -12,7 +12,6 @@ const totakasSong = new sound("sounds/MP_totakassong.wav");
 
 export default function Homepage() {
   const dispatch = useDispatch();
-  //const exploded = useSelector(lettersExploded);
 
   function fallOffscreen(e) {
     e.target.classList.add('pointer-disable');
@@ -39,6 +38,15 @@ export default function Homepage() {
     totakasSong.play();
   }
 
+  function toggleFlipLetters(e) {
+    if (e.target.style.animation) {
+      e.target.style.animation = null;
+      e.target.offsetHeight;
+    }
+    e.target.style.animation = "lockOut 0.7s 1";
+    dispatch(flipLetters());
+  }
+
   return (
     <>
     <PageTitle 
@@ -46,15 +54,12 @@ export default function Homepage() {
       actions={{
         0: colorRoulette,
         1: fallOffscreen,
+        4: toggleFlipLetters,
       }}
       children={{
         5: letterBomb,
       }}
     />
-    <div className='page-description'>
-      <p>Welcome to the personal website of Joey Rose!</p>
-      <p>For now, there is nothing here.</p>
-    </div>
     </>
   );
 }

@@ -42,8 +42,9 @@ export default function LetterBomb({ initCount, letterIndex, onExplode }) {
     }
 
     useEffect(() => {
-        pulse();
-    }, [countdown.current])
+        explosionImg.src = `assets/home/O2Explosion.gif?${new Date().getTime()}`;
+        explosionImg.onload = () => { console.log("should load"); }
+    }, [])
 
     useEffect(() => {
         if (count > 0) {
@@ -55,18 +56,15 @@ export default function LetterBomb({ initCount, letterIndex, onExplode }) {
 
     useEffect(() => {
         if (exploded) {
-            explosionImg.src = `assets/home/O2Explosion.gif?${new Date().getTime()}`;
-            explosionImg.onload = () => {
-                if (onExplode) onExplode(letterIndex);
-                explosion.current.src = null;
-                requestAnimationFrame(() => {
-                    explosion.current.src = explosionImg.src;
-                    explosionSound.play();
-                    setTimeout(() => {
-                        explosion.current.classList.add('exploded');
-                    }, 2000)
-                })
-            }
+            if (onExplode) onExplode(letterIndex);
+            explosion.current.src = null;
+            requestAnimationFrame(() => {
+                explosion.current.src = explosionImg.src;
+                explosionSound.play();
+                setTimeout(() => {
+                    explosion.current.classList.add('exploded');
+                }, 2000)
+            })
         }
     }, [exploded])
 
