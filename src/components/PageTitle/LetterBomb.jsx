@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import sound from '../../utils/audio';
 
-import warningSrc from '../../../sounds/SCD_warning.wav';
+import warningSrc from '/sounds/SCD_warning.wav?url';
 const warningSound = new sound(warningSrc);
 
-import explosionSoundSrc from '../../../sounds/SSB_fireball.wav';
+import explosionSoundSrc from '/sounds/SSB_fireball.wav?url';
 const explosionSound = new sound(explosionSoundSrc);
 
 const explosionImg = new Image();
