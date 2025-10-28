@@ -1,12 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { lettersExploded, flipped } from "../../features/Homepage/homeSlice";
 import { ignoreTransition } from "../../utils/effects";
 
-export default function PageTitleLetter({ letter, index, onClick, children }) {
+export default function PageTitleLetter({ letter, index, onClick }) {
     const [isMounted, setIsMounted] = useState(false);
     const [isExploded, setIsExploded] = useState(false);
-    const [isFlipped, setIsFlipped] = useState(false);
 
     const explodedList = useSelector(lettersExploded);
     const lettersAreFlipped = useSelector(flipped);
@@ -16,6 +15,10 @@ export default function PageTitleLetter({ letter, index, onClick, children }) {
     function handleClick(e) {
         if (onClick) onClick(e);
     }
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         if (explodedList.includes(index)) setIsExploded(true);
@@ -30,7 +33,6 @@ export default function PageTitleLetter({ letter, index, onClick, children }) {
                 currentTimeout = setTimeout(() => {
                     const finalRotation = lettersAreFlipped ? '1620deg' : '0deg';
                     letterElement.current.style.rotate = finalRotation;
-                    setIsFlipped(lettersAreFlipped);
                 }, flipDelay);
             }
         } else {
@@ -41,18 +43,17 @@ export default function PageTitleLetter({ letter, index, onClick, children }) {
         }
     }, [lettersAreFlipped])
 
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
+    const style = {animationDelay: `${index * 0.25}s`,}
 
     return(
-        <div className="letter-container" onClick={handleClick}>
-            {!isExploded &&
+        <>
+        {!isExploded &&
+            <div className="letter-container" onClick={handleClick}>
                 <div className="letter-action-container">
                     <h1 className="select-disable" ref={letterElement}>{letter ? letter : 'F'}</h1>
                 </div>
-            }
-            {children}
-        </div>
+            </div>
+        }
+        </>
     );
 }

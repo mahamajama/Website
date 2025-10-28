@@ -72,8 +72,8 @@ export const ignoreTransformTransitionTemp = (element, targetTransform, delay) =
 
 
 //  MY NAME FUNCTIONS
-
-const blipSound = new sound("sounds/SSB_dot.wav");
+import blipSrc from '../../sounds/SSB_dot.wav';
+const blipSound = new sound(blipSrc);
 
 export function colorRoulette(e) {
     const tics = 16;
@@ -97,7 +97,7 @@ export function colorRoulette(e) {
       e.target.children[0].children[0].style.color = getRandomColor();
       i++;
 
-      blipSound.play();
+      blipSound.replay();
 
       if (i < tics) {
         setTimeout(() => {

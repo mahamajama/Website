@@ -1,0 +1,63 @@
+
+
+
+
+#ornate-box-pickup {
+    position: absolute;
+	z-index: -2;
+    left: 0.8rem;
+	bottom: 0;
+}
+
+#tim-run {
+	position: absolute;
+	z-index: -1;
+    left: 1.5rem;
+	bottom: 0;
+
+	&.revealed {
+		z-index: 2;
+		animation: exitStageRight 2s forwards;
+	}
+}
+
+#nut-pickup {
+    position: absolute;
+	z-index: -1;
+    left: 0;
+	bottom: 0;
+}
+
+@keyframes exitStageRight {
+	0%{
+		transform: translate(0, 0) scale(1, 1);
+	}
+	16%{
+		transform: translate(0, 0) scale(-1, 1);
+	}
+	24%{
+		transform: translate(0, 0) scale(1, 1);
+	}
+	36%{
+		transform: translate(0, 0) scale(-1, 1);
+	}
+	40%{
+		transform: translate(0, 0) scale(1, 1);
+		animation-timing-function: cubic-bezier(0,-0.35,.27,1.01);
+	}
+	45%{
+		transform: translate(0, -12px);
+		animation-timing-function: cubic-bezier(.56,.07,.98,.75);
+	}
+	50%{
+		transform: translate(0, 0);
+		animation-timing-function: cubic-bezier(.16,.05,.81,-0.32);
+	}
+	100%{
+		transform: translate(125vw, 0);
+	}
+}
+
+
+
+

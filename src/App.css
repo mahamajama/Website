@@ -37,6 +37,12 @@
   position: absolute;
 }
 
+.item-pickup {
+  width: 22px;
+  height: 22px;
+  image-rendering: pixelated;
+}
+
 @keyframes spritesheetY {
      0% { background-position-y:   0px; }
    100% { background-position-y: 100%; }

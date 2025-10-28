@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import sound from '../../utils/audio';
 
-const warningSound = new sound("sounds/SCD_warning.wav");
-const explosionSound = new sound("sounds/SSB_fireball.wav");
+import warningSrc from '../../../sounds/SCD_warning.wav';
+const warningSound = new sound(warningSrc);
+
+import explosionSoundSrc from '../../../sounds/SSB_fireball.wav';
+const explosionSound = new sound(explosionSoundSrc);
 
 const explosionImg = new Image();
-explosionImg.src = "assets/home/O2Explosion.gif";
 
 export default function LetterBomb({ initCount, letterIndex, onExplode }) {
     const [exploded, setExploded] = useState(false);
@@ -23,7 +25,10 @@ export default function LetterBomb({ initCount, letterIndex, onExplode }) {
     function handleClick(e) {
         if (!exploded) {
             if (!showCount) setShowCount(true);
-            setCount(count - 1);
+
+            let newCount = count - 1;
+            setCount(newCount);
+            if (newCount > 0) pulse();
         }
     }
 
@@ -33,7 +38,7 @@ export default function LetterBomb({ initCount, letterIndex, onExplode }) {
             countdown.current.offsetHeight;
             countdown.current.classList.add('pulse');
             countdown.current.addEventListener('animationend', resetPulse);
-            warningSound.play();
+            warningSound.replay();
         }
     }
     function resetPulse() {
@@ -42,14 +47,11 @@ export default function LetterBomb({ initCount, letterIndex, onExplode }) {
     }
 
     useEffect(() => {
-        explosionImg.src = `assets/home/O2Explosion.gif?${new Date().getTime()}`;
-        explosionImg.onload = () => { console.log("should load"); }
+        explosionImg.src = `images/home/O2Explosion.gif?${new Date().getTime()}`;
     }, [])
 
     useEffect(() => {
-        if (count > 0) {
-            pulse();
-        } else {
+        if (count < 1) {
             setExploded(true);
         } 
     }, [count])
