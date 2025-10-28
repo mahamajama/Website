@@ -72,7 +72,7 @@ export const ignoreTransformTransitionTemp = (element, targetTransform, delay) =
 
 
 //  MY NAME FUNCTIONS
-import blipSrc from '/sounds/SSB_dot.wav?url';
+import blipSrc from '/sounds/SSB_Dot.wav?url';
 const blipSound = new sound(blipSrc);
 
 export function colorRoulette(e) {

@@ -12,7 +12,7 @@ import LetterBomb from '../../components/PageTitle/LetterBomb';
 import sound from '../../utils/audio';
 import { colorRoulette } from '../../utils/effects';
 
-import totakasSrc from '/sounds/MP_totakassong.wav?url';
+import totakasSrc from '/sounds/MP_totakasSong.wav?url';
 const totakasSong = new sound(totakasSrc);
 
 export default function Homepage() {

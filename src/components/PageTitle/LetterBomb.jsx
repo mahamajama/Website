@@ -4,7 +4,7 @@ import sound from '../../utils/audio';
 import warningSrc from '/sounds/SCD_warning.wav?url';
 const warningSound = new sound(warningSrc);
 
-import explosionSoundSrc from '/sounds/SSB_fireball.wav?url';
+import explosionSoundSrc from '/sounds/SSB_Fireball.wav?url';
 const explosionSound = new sound(explosionSoundSrc);
 
 const explosionImg = new Image();
