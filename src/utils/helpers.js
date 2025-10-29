@@ -151,4 +151,11 @@ window.mobileCheck = function() {
   return check;
 };
 
+export function getTranslate(element) {
+    const style = window.getComputedStyle(element);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    return [matrix.m41, matrix.m42];
+}
+
+
 

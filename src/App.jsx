@@ -3,6 +3,7 @@ import './App.css';
 
 import Homepage from './features/Homepage/Homepage';
 import Background from './features/Background/Background';
+import ModalManager from './components/Modals/ModalManager';
 
 if (mobileCheck()) {
   document.body.classList.add
@@ -33,6 +34,7 @@ export default function App() {
       <div className="main-content-container">
         <Homepage />
       </div>
+      <ModalManager />
       <Background />
     </>
   )

@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 import './Homepage.css';
 
 import { explodeLetter, flipLetters } from "../../features/Homepage/homeSlice";
 import { setFlag, selectFlags } from '../../gameSlice';
+import { createModal } from '../../components/Modals/modalSlice';
 import PageTitle from "../../components/PageTitle/PageTitle";
 import ItemPickup from '../../components/Items/ItemPickup';
 import LetterBomb from '../../components/PageTitle/LetterBomb';
@@ -63,6 +65,34 @@ export default function Homepage() {
     }
   }
 
+  function modalTest(e) {
+    if (e.target.style.animation) {
+      e.target.style.animation = null;
+      e.target.offsetHeight;
+    }
+    e.target.style.animation = "lockOut 0.7s 1";
+    const modalChild = (<p>This is a test on a modal child object.</p>);
+    dispatch(createModal({
+      id: uuidv4(),
+      label: 'Modal Test',
+      //children: modalChild,
+    }))
+  }
+
+  function handleExplode(letterIndex) {
+    dispatch(explodeLetter(letterIndex));
+    totakasSong.play();
+  }
+
+  function toggleFlipLetters(e) {
+    if (e.target.style.animation) {
+      e.target.style.animation = null;
+      e.target.offsetHeight;
+    }
+    e.target.style.animation = "lockOut 0.7s 1";
+    dispatch(flipLetters());
+  }
+
   const letterBomb = (
     <LetterBomb 
       initCount={4}
@@ -101,20 +131,6 @@ export default function Homepage() {
     </div>
   );
 
-  function handleExplode(letterIndex) {
-    dispatch(explodeLetter(letterIndex));
-    totakasSong.play();
-  }
-
-  function toggleFlipLetters(e) {
-    if (e.target.style.animation) {
-      e.target.style.animation = null;
-      e.target.offsetHeight;
-    }
-    e.target.style.animation = "lockOut 0.7s 1";
-    dispatch(flipLetters());
-  }
-
   return (
     <>
     <PageTitle 
@@ -123,6 +139,7 @@ export default function Homepage() {
         0: colorRoulette,
         1: fallOffscreen,
         2: revealBox,
+        3: modalTest,
         4: toggleFlipLetters,
         7: revealNut,
       }}
