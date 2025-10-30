@@ -18,6 +18,7 @@ export default function ModalManager() {
                     <Modal
                         id={modal.id}
                         label={modal.label}
+                        text={modal.text}
                         children={modal.children}
                         persistent={modal.persistent}
                         key={modal.id}

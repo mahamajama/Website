@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuidv4 } from 'uuid';
 import { selectModals, selectFocused, setFocused, closeModal } from "./modalSlice";
 
-export default function Modal({ children, id, label, persistent }) {
+export default function Modal({ children, id, label, text, persistent }) {
     const dispatch = useDispatch();
     const [mounted, setMounted] = useState(false);
 
@@ -103,6 +104,7 @@ export default function Modal({ children, id, label, persistent }) {
                 <button className="modal-close-button" onClick={handleClickClose} type="button" ref={closeButton}></button>
             </div>
             <div className="modal-content-container open" ref={content}>
+                {text && text.map(line => <p key={uuidv4()}>{line}</p>)}
                 {children}
             </div>
         </div>

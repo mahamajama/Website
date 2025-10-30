@@ -15,7 +15,7 @@
   z-index: 10;
   top: 50%;
   left: 50%;
-  width: 100%;
+  width: calc(100% - 40px);
   height: auto;
   max-width: 500px;
   max-height: 600px;
@@ -34,10 +34,10 @@
     display: flex;
     align-content: center;
     align-items: center;
-    position: relative;
+    position: absolute;
     z-index: 1;
+    width: 100%;
     height: 36px;
-    margin: 2px;
     padding: 1px;
     background-color: black;
     border: 1px solid white;
@@ -55,7 +55,7 @@
 .modal-top-bar h2 {
     margin: 0;
     font-family: 'SierraSCI', monospace;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     flex: 1;
 }
@@ -81,19 +81,22 @@
 .modal-close-button:hover {
     transform: scale(1.2);
 }
+.modal-close-button:active {
+    transform: scale(0.8);
+}
 
 .modal-content-container {
-    position: absolute;
+    position: relative;
     z-index: 0;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     padding: 60px 30px 30px;
     background-color: black;
     border: 1px solid white;
     box-shadow: 5px 5px #00000099;
     transform-origin: top;
+    text-align: center;
 
     &.open {
         animation: openModal 0.2s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
@@ -102,6 +105,17 @@
     &.close {
         animation: closeModal 0.1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
     }
+}
+
+.modal-content-container p {
+    font-family: 'GloryQuest', monospace;
+    font-size: 1.8em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.modal-content-container * + p {
+    margin: 0.7em 0 0;
 }
 
 @keyframes openModal {
