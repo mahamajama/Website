@@ -5,7 +5,8 @@ export const gameSlice = createSlice({
     initialState: {
         isDebugMode: false,
         flags: [],
-        inventory: {},
+        inventory: [],
+        menuIsOpen: false,
     },
     reducers: {
         setIsDebugMode: (state, action) => {
@@ -15,13 +16,34 @@ export const gameSlice = createSlice({
             state.flags.push(action.payload);
         },
         addToInventory: (state, action) => {
-            state.inventory[action.payload] = action.payload;
+            state.inventory.push(action.payload);
         },
+        setMenuIsOpen: (state, action) => {
+            state.menuIsOpen = action.payload;
+        }
     },
 });
+
+export const allItems = {
+    nut: {
+        name: 'nut',
+        displayName: 'Nut',
+        icon: 'images/items/nut.png',
+        fullImage: 'images/items/nut_full.png',
+        description: 'A large nut. It looks similar to a walnut.',
+    },
+    ornateBox: {
+        name: 'ornateBox',
+        displayName: 'Ornate Box',
+        icon: 'images/items/ornateBox.png',
+        fullImage: 'images/items/ornateBox_full.png',
+        description: 'A finely crafted box with a combination lock built into the front.',
+    },
+}
 
 export const isDebugMode = (state) => state.game.isDebugMode;
 export const selectFlags = (state) => state.game.flags;
 export const selectInventory = (state) => state.game.inventory;
-export const { setIsDebugMode, setFlag, addToInventory } = gameSlice.actions;
+export const selectMenuIsOpen = (state) => state.game.menuIsOpen;
+export const { setIsDebugMode, setFlag, addToInventory, setMenuIsOpen } = gameSlice.actions;
 export default gameSlice.reducer;

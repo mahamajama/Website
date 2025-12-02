@@ -22,7 +22,7 @@
   transform: translate(-50%, -50%);
 
   &.focused {
-    z-index: 11;
+    z-index: 50;
   }
 
   &.closed {

@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './App.css';
 
+import { selectMenuIsOpen } from './gameSlice';
 import Homepage from './features/Homepage/Homepage';
 import Background from './features/Background/Background';
 import ModalManager from './components/Modals/ModalManager';
+import Menu from './features/Menu/Menu';
 
 if (mobileCheck()) {
-  document.body.classList.add
+  document.body.classList.add("mobile")
 }
 
 async function handleRequest(request) {
@@ -28,14 +31,17 @@ async function handleRequest(request) {
 addEventListener("fetch", event => event.respondWith(handleRequest(event.request)));
 
 export default function App() {
-
+  const menuIsOpen = useSelector(selectMenuIsOpen);
   return (
     <>
-      <div className="main-content-container">
-        <Homepage />
+      <Menu />
+      <div id="container" className={menuIsOpen ? 'blurred' : ''}>
+        <div className="main-content-container content-container">
+          <Homepage />
+        </div>
+        <ModalManager />
+        <Background />
       </div>
-      <ModalManager />
-      <Background />
     </>
   )
 }

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './Homepage.css';
 
 import { explodeLetter, flipLetters } from "../../features/Homepage/homeSlice";
-import { setFlag, selectFlags } from '../../gameSlice';
+import { setFlag, selectFlags, allItems } from '../../gameSlice';
 import { createModal } from '../../components/Modals/modalSlice';
 import PageTitle from "../../components/PageTitle/PageTitle";
 import ItemPickup from '../../components/Items/ItemPickup';
@@ -13,9 +13,9 @@ import LetterBomb from '../../components/PageTitle/LetterBomb';
 
 import sound from '../../utils/audio';
 import { colorRoulette } from '../../utils/effects';
+import { getTranslate } from '../../utils/helpers';
 
 import totakasSrc from '/sounds/MP_totakasSong.wav?url';
-import { getTranslate } from '../../utils/helpers';
 const totakasSong = new sound(totakasSrc);
 
 export default function Homepage() {
@@ -155,8 +155,7 @@ export default function Homepage() {
           ref={timRunRef}
         />
         <ItemPickup
-          name="ornate box"
-          imageSrc="images/items/ornateBox.png" 
+          itemData={allItems.ornateBox} 
           id="ornate-box-pickup"
         />
       </div>
@@ -166,8 +165,7 @@ export default function Homepage() {
   const nutPickup = (
     <div className="letter-children-container" ref={nutPickupContainer}>
       <ItemPickup
-        name="nut"
-        imageSrc="images/items/nut.png"
+        itemData={allItems.nut} 
         id="nut-pickup"
       />
     </div>

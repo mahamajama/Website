@@ -6,7 +6,6 @@ import store from './store';
 import App from './App.jsx';
 
 const root = document.getElementById('root');
-if (mobileCheck()) root.classList.add('mobile');
 
 createRoot(root).render(
   <StrictMode>

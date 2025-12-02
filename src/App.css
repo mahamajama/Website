@@ -10,11 +10,26 @@
   text-align: left;
 }
 
-.main-content-container {
+#container {
+  position: absolute;
   width: 100%;
   height: 100%;
-  max-width: 780px;
+  filter: blur(0);
+  transition: filter 0.5s cubic-bezier(.23,.02,0,1);
+
+  &.blurred {
+    filter: blur(13px);
+  }
+}
+
+.content-container {
+  width: 100%;
+  height: 100%;
+  max-width: var(--main-content-width);
   margin: 0 auto;
+}
+
+.main-content-container {
   padding: 100px 30px;
   display: flex;
   justify-content: center;
