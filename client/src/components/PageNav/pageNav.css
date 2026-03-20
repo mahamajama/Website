@@ -1,0 +1,24 @@
+
+
+
+.page-nav {
+    display: flex;
+    position: sticky;
+    z-index: 20;
+    --negative-padding: calc(var(--global-padding) * -1);
+    bottom: var(--negative-padding);
+    width: calc(100% + var(--global-padding) * 2);
+    margin-left: var(--negative-padding);
+    margin-bottom: var(--negative-padding);
+    justify-content: space-around;
+    gap: 10px;
+    background-color: white;
+}
+
+.page-nav a {
+    font-size: 2vw;
+    cursor: pointer;
+    color: black;
+}
+
+

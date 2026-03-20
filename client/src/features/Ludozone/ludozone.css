@@ -1,0 +1,46 @@
+
+
+
+
+
+.game-listing {
+    background-color: rgba(0, 0, 0, 0.863);
+    border: 2px solid white;
+}
+
+.game-listing + .game-listing {
+    margin-top: 12px;
+}
+
+.game-listing button {
+    display: flex;
+    width: 100%;
+    padding: 12px;
+}
+
+.game-listing-details-wrapper {
+    height: 0px;
+    overflow: hidden;
+
+    &.open {
+        height: auto;
+    }
+}
+
+.game-listing-details {
+    display: flex;
+    padding: 12px;
+    gap: 24px;
+}
+
+.game-listing-detail h3 {
+    font-size: 0.8em;
+}
+
+.game-listing-detail p {
+    font-family: 'JetBrainsMono';
+    font-size: 0.9em;
+}
+
+
+

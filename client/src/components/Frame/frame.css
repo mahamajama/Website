@@ -1,0 +1,188 @@
+
+
+
+.frame-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100px;
+    
+    --frame-button-color: blueviolet;
+}
+
+.frame-button {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background-color: var(--frame-button-color);
+}
+
+.frame {
+    position: fixed;
+    z-index: 35;
+    top: 0;
+    left: 0;
+    width: 0px;
+    height: 0px;
+    animation: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: filter 0.5s cubic-bezier(.23,.02,0,1);
+    --frame-bg-color: rgba(21, 255, 0, 0.69);
+
+    &.open {
+        pointer-events: auto;
+        opacity: 1;
+        animation: openFrame 0.7s cubic-bezier(.55,.73,.11,1) forwards, darkenBg 1.2s cubic-bezier(.55,.73,.11,1) 0.7s forwards;
+    }
+
+    &.close {
+        opacity: 1;
+        animation: closeFrame 0.3s cubic-bezier(.55,.73,.11,1) forwards, darkenBg 0.2s cubic-bezier(.55,.73,.11,1) reverse;
+    }
+}
+
+.frame-close-button {
+    position: absolute;
+    z-index: 2;
+    top: 46px;
+    right: 46px;
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.frame-content-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    transform: scale(0, 0);
+    animation: none;
+    opacity: 0.5;
+
+    &.open {
+        animation: tvOn 0.6s cubic-bezier(.79,.08,.21,.85) 0.1s forwards;
+    }
+
+    &.close {
+        animation: tvOff 0.2s ease-in forwards;
+    }
+}
+
+.frame-content {
+    padding: 42px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.frame-content-background {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: calc(100% - 72px);
+    height: calc(100% - 72px);
+    background-color: var(--frame-bg-color);
+    transform: translate(-50%, -50%);
+}
+
+@keyframes tvOn { 
+    0% { 
+        transform: scale(0, 0); 
+        opacity: 0.5; 
+    }
+    36% { 
+        transform: scale(0.1, 0.6); 
+    }
+    100% { 
+        transform: scale(1, 1); 
+        opacity: 1; 
+    }
+}
+
+@keyframes tvOff { 
+    0% { 
+        transform: scale(1, 1); 
+        opacity: 1; 
+    }
+    60% { 
+        transform: scale(0.1, 0.6); 
+    }
+    100% { 
+        transform: scale(0, 0); 
+        opacity: 0.5; 
+    }
+}
+
+.frame-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.frame-border {
+    position: absolute;
+    width: 0%;
+    height: 0%;
+    border: 2px solid var(--frame-bg-color);
+    animation: none;
+    pointer-events: none;
+
+    &.open {
+        animation: openFrame 0.8s cubic-bezier(.55,.73,.11,1) forwards;
+    }
+}
+
+@keyframes openFrame {
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@keyframes closeFrame {
+    0% {
+        transform: scale(1, 1);
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    40% {
+        transform: scale(1, 1);
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    88% {
+        transform: scale(0.6, 0.02);
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    100% {
+        transform: scale(0, 0);
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@keyframes darkenBg {
+    0% {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+}
