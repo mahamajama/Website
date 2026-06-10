@@ -2,31 +2,35 @@ import { useState, useEffect, useRef } from "react";
 
 import './slideshow.css';
 
-export default function Slideshow({ slides }) {
-    const width = useRef(340);
-    const position = useRef(0);
-    const slidesRef = useRef(null);
+export default function Slideshow({ slides, onChange }) {
+    const [position, setPosition] = useState(0);
 
+    const width = useRef(340);
+    const slidesRef = useRef(null);
+    
     useEffect(() => {
         if (slidesRef.current) {
             width.current = slidesRef.current.offsetWidth;
         }
-    }, [slidesRef.current])
+    }, [slidesRef.current]);
+    
+    useEffect(() => {
+        moveSlides();
+        if (onChange) onChange(position);
+    }, [position]);
 
     function moveSlides() {
-        slidesRef.current.style.transform = `translateX(${position.current * -100}%)`;
+        slidesRef.current.style.transform = `translateX(${position * -100}%)`;
     }
 
     function handleClickPrevSlide() {
         const min = 0;
-        position.current = Math.max(position.current - 1, min);
-        moveSlides();
+        setPosition(Math.max(position - 1, min));
     }
 
     function handleClickNextSlide() {
         const max = slides.length - 1;
-        position.current = Math.min(position.current + 1, max);
-        moveSlides();
+        setPosition(Math.min(position + 1, max));
     }
 
     return (
@@ -35,8 +39,8 @@ export default function Slideshow({ slides }) {
                 <div className="slides" ref={slidesRef}>
                     {slides && slides.map((slide, i) => {
                         return (
-                            <div className="slide" key={`slide_${i}_${slide.title}`}>
-                                {slide.title && <h4>{slide.title}</h4>}
+                            <div className={`slide slide-position-${i - position}`} key={`slide_${i}_${slide.title}`}>
+                                {slide.title && <h3>{slide.title}</h3>}
                                 <div className="slide-content">
                                     {slide.content}
                                 </div>
@@ -45,10 +49,20 @@ export default function Slideshow({ slides }) {
                     })}
                 </div>
                 <div className="slide-nav">
-                    <button className="prev-slide-button" onClick={handleClickPrevSlide} type="button">
+                    <button 
+                        className="prev-slide-button" 
+                        onClick={handleClickPrevSlide} 
+                        disabled={position <= 0}
+                        type="button"
+                    >
                         {`<-`}
                     </button>
-                    <button className="next-slide-button" onClick={handleClickNextSlide} type="button">
+                    <button 
+                        className="next-slide-button" 
+                        onClick={handleClickNextSlide} 
+                        disabled={position >= slides.length - 1}
+                        type="button"
+                    >
                         {`->`}
                     </button>
                 </div>

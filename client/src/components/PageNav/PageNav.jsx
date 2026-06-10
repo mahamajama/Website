@@ -9,22 +9,36 @@ export default function PageNav({ sections }) {
 
     const rootRef = useRef(document.getElementById('root'));
     const containerRef = useRef(document.getElementById('container'));
+    const progressRef = useRef(null);
+    const heightRef = useRef(999);
 
     useEffect(() => {
         rootRef.current = document.getElementById('root');
         containerRef.current = document.getElementById('container');
     }, []);
+
     useEffect(() => {
-        if (!mounted && containerRef.current && rootRef.current) {
+        if (!mounted && containerRef.current && rootRef.current && progressRef.current) {
+            heightRef.current = containerRef.current.scrollHeight - containerRef.current.offsetHeight;
+            const pos = 1 - ((heightRef.current - containerRef.current.scrollTop) / heightRef.current);
+            progressRef.current.style.transform = `translateY(-50%) scaleX(${pos})`;
+            containerRef.current.addEventListener('scroll', onScroll, { passive: true });
             setMounted(true);
         }
-    }, [containerRef.current, rootRef.current]);
+    }, [containerRef.current, rootRef.current, progressRef.current]);
 
     function handleNavigate(e) {
         const secId = e.target.getAttribute('data-section');
         const element = document.getElementById(secId);
         const scrollPos = element ? element.offsetTop : 0;
         scrollTo(0, scrollPos);
+    }
+
+    function onScroll(e) {
+        if (!progressRef.current) return;
+        const scroll = e.target.scrollTop;
+        const pos = 1 - ((heightRef.current - scroll) / heightRef.current);
+        progressRef.current.style.transform = `translateY(-50%) scaleX(${pos})`;
     }
 
     function scrollTo(targetX, targetY) {
@@ -38,6 +52,7 @@ export default function PageNav({ sections }) {
     return (
         <>
         <div className="page-nav">
+            <div className="page-nav-links">
                 {Object.keys(sections).map((secName, i) => {
                     return (
                         <a 
@@ -50,6 +65,8 @@ export default function PageNav({ sections }) {
                     );
                 })}
             </div>
+            <div className="page-nav-progress" ref={progressRef}></div>
+        </div>
         </>
     );
 }

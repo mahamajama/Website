@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectList, getList } from "./ludozoneSlice.js";
 import GameListing from "./GameListing.jsx";
+import GameplayData from "./GameplayData.jsx";
 
 const sortBy = {
     completed: {
@@ -13,7 +14,7 @@ const sortBy = {
         desc: (a, b) => b.released_epoch - a.released_epoch,
         asc: (a, b) => a.released_epoch - b.released_epoch,
     },
-    alphabetical: {
+    name: {
         asc: (a, b) => {
             const aTrimmed = trimName(a.name);
             const bTrimmed = trimName(b.name);
@@ -24,6 +25,22 @@ const sortBy = {
         desc: (a, b) => {
             const aTrimmed = trimName(a.name);
             const bTrimmed = trimName(b.name);
+            if(aTrimmed < bTrimmed) return 1;
+            if(aTrimmed > bTrimmed) return -1;
+            return 0;
+        },
+    },
+    platform: {
+        asc: (a, b) => {
+            const aTrimmed = trimName(a.platform);
+            const bTrimmed = trimName(b.platform);
+            if(aTrimmed < bTrimmed) return -1;
+            if(aTrimmed > bTrimmed) return 1;
+            return 0;
+        },
+        desc: (a, b) => {
+            const aTrimmed = trimName(a.platform);
+            const bTrimmed = trimName(b.platform);
             if(aTrimmed < bTrimmed) return 1;
             if(aTrimmed > bTrimmed) return -1;
             return 0;
@@ -53,6 +70,7 @@ export default function TheList() {
         reverse: false,
         platform: 'all',
     });
+
     const list = useSelector(selectList);
 
     useEffect(() => {
@@ -78,30 +96,68 @@ export default function TheList() {
             newOptions.reverse = !newOptions.reverse;
         } else {
             newOptions.sort = sort;
-            newOptions.reverse = false;
+            if (sort === 'name' || sort === 'platform')
+                newOptions.reverse = true;
+            else
+                newOptions.reverse = false;
         }
         setOptions(newOptions);
     }
 
     return (
         <div id="the-list">
-            <h1>THE LIST</h1>
-            <p>of games I have beaten</p>
-            <div className="the-list-options">
-                <button onClick={()=>handleChangeSort('completed')} type="button">Completed</button>
-                <button onClick={()=>handleChangeSort('released')} type="button">Released</button>
+            <div className="the-list-title">
+                <h1>THE LIST</h1>
+                <p>of games I have beaten</p>
             </div>
-            <div className="the-list-data">
-                
+            <div className="the-list-container">    
+                <table>
+                    <thead>
+                        <tr className="the-list-header">
+                            <th 
+                                className={`col-name ${options.sort === 'name' ? 'active' : ''}`} 
+                                scope="col"
+                                onClick={()=>handleChangeSort('name')}
+                            >
+                                <div className={`arrow ${options.reverse ? 'down' : 'up'}`}></div>
+                                Name
+                            </th>
+                            <th 
+                                className={`col-date ${options.sort === 'completed' ? 'active' : ''}`} 
+                                scope="col" 
+                                onClick={()=>handleChangeSort('completed')}
+                            >
+                                <div className={`arrow ${options.reverse ? 'down' : 'up'}`}></div>
+                                Completed
+                            </th>
+                            <th 
+                                className={`col-date ${options.sort === 'released' ? 'active' : ''}`} 
+                                scope="col" 
+                                onClick={()=>handleChangeSort('released')}
+                            >
+                                <div className={`arrow ${options.reverse ? 'down' : 'up'}`}></div>
+                                Released
+                            </th>
+                            <th 
+                                className={`${options.sort === 'platform' ? 'active' : ''}`}
+                                scope="col"
+                                onClick={()=>handleChangeSort('platform')}
+                            >
+                                <div className={`arrow ${options.reverse ? 'down' : 'up'}`}></div>
+                                Platform
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listToRender.map((game, i) => {
+                            return (
+                                <GameListing data={game} key={`theList_${i}`} />
+                            );
+                        })}
+                    </tbody>
+                </table>
+                <GameplayData />
             </div>
-            <ol>
-                {listToRender.map((game, i) => {
-                    trimName(game.name);
-                    return (
-                        <GameListing data={game} key={`theList_${i}`} />
-                    );
-                })}
-            </ol>
         </div>
     );
 }

@@ -42,9 +42,22 @@ export default function LetterBomb({ initCount, letterIndex, onExplode }) {
             warningSound.replay();
         }
     }
+
     function resetPulse() {
         countdown.current.removeEventListener('animationend', resetPulse);
         countdown.current.classList.remove('pulse');
+    }
+
+    function explode() {
+        if (onExplode) onExplode(letterIndex);
+        explosion.current.src = null;
+        requestAnimationFrame(() => {
+            explosion.current.src = explosionImg.src;
+            explosionSound.play();
+            setTimeout(() => {
+                explosion.current.classList.add('exploded');
+            }, 2000)
+        });
     }
 
     useEffect(() => {
@@ -52,24 +65,11 @@ export default function LetterBomb({ initCount, letterIndex, onExplode }) {
     }, [])
 
     useEffect(() => {
-        if (count < 1) {
+        if (!exploded && count < 1) {
+            explode();
             setExploded(true);
         } 
     }, [count])
-
-    useEffect(() => {
-        if (exploded) {
-            if (onExplode) onExplode(letterIndex);
-            explosion.current.src = null;
-            requestAnimationFrame(() => {
-                explosion.current.src = explosionImg.src;
-                explosionSound.play();
-                setTimeout(() => {
-                    explosion.current.classList.add('exploded');
-                }, 2000)
-            })
-        }
-    }, [exploded])
 
     return (
         <>

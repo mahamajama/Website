@@ -1,11 +1,96 @@
 
 
 
+#ludozone {
+    width: 100%;
+    height: 100%;
+}
 
+.the-list-title {
+    margin: 0 var(--negative-global-padding) 64px;
+    padding: 48px var(--global-padding);
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    background-image: url('/images/ludozone/1971Aeronautics03.gif');
+}
+
+.the-list-title h1 {
+    font-family: 'MyName';
+    margin-bottom: 10px;
+}
+
+.the-list-container {
+    display: flex;
+    gap: 64px;
+}
+
+.the-list-container table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.the-list-header {
+    position: sticky;
+    top: 0;
+}
+
+.the-list-header th {
+    background-color: rgba(0, 0, 0, 0.85);
+    font-size: 0.9em;
+    text-align: right;
+    padding: 5px 10px;
+
+    &.col-name {
+        text-align: left;
+    }
+
+    &.active {
+        background-color: rgba(255, 255, 255, 0.85);
+        color: black;
+    }
+}
+
+.arrow {
+    float: left;
+    width: 10px;
+    height: 10px;
+    border-top: 4px solid black;
+    border-left: 4px solid black;
+    transform: translateY(6px) rotate(315deg);
+    transition: transform 0.2s ease-out;
+
+    &.up {
+        transform: translateY(7px) rotate(45deg);
+    }
+    &.down {
+        transform: translateY(5px) rotate(225deg);
+    }
+    &.left {
+        transform: translateY(6px) rotate(315deg);
+    }
+    &.right {
+        transform: translateY(6px) rotate(135deg);
+    }
+}
+
+.col-name .arrow {
+    float: right;
+}
+
+#the-list td {
+    padding: 10px;
+    font-size: 0.8em;
+    text-align: right;
+
+    &.game-name {
+        text-align: left;
+    }
+}
 
 .game-listing {
-    background-color: rgba(0, 0, 0, 0.863);
+    background-color: rgba(0, 0, 0, 0.85);
     border: 2px solid white;
+    font-family: 'JetBrainsMono', monospace;
 }
 
 .game-listing + .game-listing {
@@ -13,12 +98,13 @@
 }
 
 .game-listing button {
-    display: flex;
+    display: block;
     width: 100%;
     padding: 12px;
 }
 
 .game-listing-details-wrapper {
+    display: block;
     height: 0px;
     overflow: hidden;
 
@@ -35,12 +121,65 @@
 
 .game-listing-detail h3 {
     font-size: 0.8em;
+    text-align: left;
 }
 
 .game-listing-detail p {
     font-family: 'JetBrainsMono';
     font-size: 0.9em;
 }
+
+
+
+
+
+
+
+
+.gameplay-data {
+    width: 640px;
+    padding: 24px;
+    border: 3px double white;
+}
+
+.gameplay-data h1 {
+    font-size: 1.7em;
+    margin-bottom: 42px;
+}
+
+.gameplay-data h2 {
+    font-family: 'GloryQuest';
+    font-size: 2em;
+    margin-bottom: 24px;
+}
+
+.gameplay-data-item + .gameplay-data-item {
+    margin-top: 24px;
+}
+
+.gameplay-data h2 {
+    font-size: 1em;
+}
+
+.gameplay-data p {
+    font-family: 'JetBrainsMono', monospace;
+    font-size: 1em;
+
+    &.total-beaten {
+        font-size: 2.8em;
+    }
+}
+
+.gameplay-data-graph {
+    margin-bottom: 42px;
+}
+
+.gameplay-data-graph h3 {
+    margin-bottom: 12px;
+}
+
+
+
 
 
 

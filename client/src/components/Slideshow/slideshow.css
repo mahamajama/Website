@@ -28,16 +28,64 @@
     position: relative;
     width: 100%;
     height: 100%;
-    padding-right: 10%;
+    padding-right: 5%;
     flex: 0 0 100%;
+    opacity: 0;
+    transform: scale(0) translateX(-200%) rotate3d(0.75, 3, 0, 62deg);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.slide h3 {
+    font-family: 'JetBrainsMono', monospace;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.slide-position-0 {
+    opacity: 1;
+    transform: scale(1) translateX(0%);
+}
+.slide-position-1 {
+    opacity: 0.3;
+    transform: scale(0.9) translateX(-38%) rotate3d(0.75, 3, 0, 69deg);
+}
+.slide-position-2 {
+    opacity: 0.1;
+    transform: scale(0.9) translateX(-138%) rotate3d(0.75, 3, 0, 69deg);
+}
+.slide-position-3 {
+    opacity: 0.05;
+    transform: scale(0.9) translateX(-238%) rotate3d(0.75, 3, 0, 69deg);
+}
+.slide-position-4 {
+    opacity: 0.025;
+    transform: scale(0.9) translateX(-338%) rotate3d(0.75, 3, 0, 69deg);
+}
+.slide-position--1 {
+    opacity: 0.3;
+    transform: scale(0.9) translateX(30%) rotate3d(-0.75, -3, 0, 69deg);
+}
+.slide-position--2 {
+    opacity: 0.1;
+    transform: scale(0.9) translateX(135%) rotate3d(-0.75, -3, 0, 69deg);
+}
+.slide-position--3 {
+    opacity: 0.05;
+    transform: scale(0.9) translateX(240%) rotate3d(-0.75, -3, 0, 69deg);
+}
+.slide-position--4 {
+    opacity: 0.025;
+    transform: scale(0.9) translateX(345%) rotate3d(-0.75, -3, 0, 69deg);
 }
 
 .slide-content {
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: rgba(135, 209, 184, 0.842);
-    border: 4px solid black;
+}
+
+.slide-content img {
+    max-width: 100%;
 }
 
 .slide-nav {
@@ -55,8 +103,17 @@
 
 .slide-nav button {
     width: 50px;
-    height: 50px;
-    border: 1px solid white;
-    border-radius: 20px;
+    height: 100px;
+    font-weight: 900;
     pointer-events: auto;
+    transition: opacity 0.25s ease-out;
 }
+
+.slide-nav button:disabled {
+    opacity: 0;
+    cursor: default;
+}
+
+
+
+

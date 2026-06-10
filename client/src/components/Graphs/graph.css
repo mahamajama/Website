@@ -1,0 +1,68 @@
+
+
+
+
+.graph {
+    position: relative;
+    font-size: 0.7em;
+}
+
+.graph-wrapper {
+    width: 100%;
+    height: 0;
+    padding-bottom: 60%;
+    margin-bottom: 4px;
+}
+
+.graph-wrapper div {
+    position: absolute;
+}
+
+.graph-canvas {
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+}
+
+.graph-x-labels {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.graph-x-labels div {
+    width: 0;
+    flex-shrink: 1;
+}
+
+.graph-x-labels p {
+    transform-origin: 0 0;
+    transform: rotate(-20deg) translateX(-75%);
+    text-wrap: nowrap;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.graph-y-labels {
+    display: flex;
+    position: absolute;
+    top: -4px;
+    left: 4px;
+    height: 100%;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.graph-y-labels p {
+    font-size: 0.8em;
+    transform-origin: 0 0;
+    text-wrap: nowrap;
+}
+
+
+
+
+
+
+

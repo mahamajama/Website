@@ -1,6 +1,73 @@
 
 
 
+
+
 .volume-controller {
+    display: flex;
+    position: relative;
+    z-index: 4;
+    flex-flow: column;
+    align-items: center;
     pointer-events: auto;
 }
+
+.volume-controller input {
+    position: relative;
+    top: 64px;
+    height: 120px;
+    writing-mode: vertical-lr;
+    direction: rtl;
+    transform: translateY(-50%);
+}
+
+.volume-slider-wrapper {
+    position: relative;
+    top: 100px;
+    height: 212px;
+    background-color: white;
+    border-radius: 12px;
+    align-self: flex-end;
+}
+
+.volume-controller button {
+    position: relative;
+    top: 12px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.volume-controller-current {
+    position: absolute;
+    z-index: -1;
+    bottom: 20px;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    padding: 14px 0;
+    background-color: white;
+    border-radius: 100%;
+    color: blue;
+    font-size: 0.65em;
+    text-align: center;
+}
+
+.volume-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+
+    &.hidden {
+        opacity: 0;
+    }
+}
+
+
+
+
+
+
+

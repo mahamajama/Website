@@ -7,6 +7,7 @@ export const gameSlice = createSlice({
         flags: [],
         inventory: [],
         menuIsOpen: false,
+        notification: null,
         cover: null,
     },
     reducers: {
@@ -18,9 +19,13 @@ export const gameSlice = createSlice({
         },
         addToInventory: (state, action) => {
             state.inventory.push(action.payload);
+            state.notification = `<item>${action.payload.displayName}</item> has been added to your inventory`;
         },
         setMenuIsOpen: (state, action) => {
             state.menuIsOpen = action.payload;
+        },
+        setNotification: (state, action) => {
+            state.notification = action.payload;
         },
         setCover: (state, action) => {
             state.cover = action.payload;
@@ -49,6 +54,6 @@ export const isDebugMode = (state) => state.game.isDebugMode;
 export const selectFlags = (state) => state.game.flags;
 export const selectInventory = (state) => state.game.inventory;
 export const selectMenuIsOpen = (state) => state.game.menuIsOpen;
-export const selectSrollPosition = (state) => state.game.scrollPosition;
-export const { setIsDebugMode, setFlag, addToInventory, setMenuIsOpen } = gameSlice.actions;
+export const selectNotification = (state) => state.game.notification;
+export const { setIsDebugMode, setFlag, addToInventory, setMenuIsOpen, setNotification } = gameSlice.actions;
 export default gameSlice.reducer;

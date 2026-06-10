@@ -14,8 +14,21 @@
     align-items: center;
 }
 
+.portfolio-section-content {
+    width: 100%;
+}
+
 .portfolio-section-name {
+    font-family: 'XanhMonoItalic', Courier, monospace;
+    font-size: 7em;
+    font-weight: 900;
     margin-bottom: 100px;
+}
+
+@media (max-width: 720px) {
+  .portfolio-section-name {
+        font-size: 5em;
+    }
 }
 
 
@@ -23,6 +36,10 @@
 
 .skills-list {
     margin-top: 42px;
+}
+
+.skills-list h2 {
+    font-family: 'XanhMonoItalic';
 }
 
 .skills-list ul {
@@ -59,17 +76,41 @@
     position: relative;
     width: 100%;
     height: auto;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 36px 8px;
     color: black;
 }
 
+.frame button {
+    font-family: "SierraSCI", monospace;
+}
+
+.project-details-label {
+    font-family: "JetBrainsMono", monospace;
+    font-size: 1em;
+}
+
 .project-details-name {
+    font-family: "XanhMono", monospace;
+    font-size: 6em;
     margin-bottom: 42px;
 }
 
 .project-details-tagline {
     font-size: 1.3em;
     margin-bottom: 64px;
+}
+
+@media (max-width: 720px) {
+    .project-details-name {
+        font-size: 4.5em;
+    }
+
+    .project-details-tagline {
+        font-size: 1.2em;
+        margin-bottom: 64px;
+    }
 }
 
 .project-details .slideshow {
@@ -100,18 +141,39 @@
     padding-top: 42px;
     border-top: 24px black double;
     max-width: 800px;
+    flex: 1 1 600px;
 }
 
 .project-details-description p + p {
     margin-top: 32px; 
 }
 
+.project-details .slide h4 {
+    font-family: 'JetBrainsMono', monospace;
+}
+
 .project-details-skills {
     min-width: 300px;
-    max-width: 480px;
+    max-width: 440px;
     padding: 24px;
     background-color: black;
     color: #00FF00;
+    flex: 0 2 350px;
+}
+
+@media (max-width: 800px) {
+    .project-details-info {
+        flex-flow: column;
+    }
+
+    .project-details-description {
+        flex: 1 0 240px;
+        margin-bottom: 36px;
+    }
+
+    .project-details-skills {
+        max-width: 100%;
+    }
 }
 
 .project-details-skills p {
@@ -145,6 +207,32 @@
 
 .project-details .skills-listing h3 {
     font-size: 0.6em;
+}
+
+.portfolio-project-list {
+    display: flex;
+    flex-flow: column;
+    gap: 36px;
+    max-width: 460px;
+}
+
+#portfolio-projects .frame-button {
+    width: 100%;
+    padding-bottom: 26%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.jamashop .frame-button {
+    background-image: url('/images/portfolio/projects/jamashop/jamashop_banner.gif');
+}
+
+.bluedit .frame-button {
+    background-image: url('/images/portfolio/projects/bluedit/bluedit_banner.gif');
+}
+
+.cgcn .frame-button {
+    background-image: url('/images/portfolio/projects/cgcn/cgcn_banner.png');
 }
 
 

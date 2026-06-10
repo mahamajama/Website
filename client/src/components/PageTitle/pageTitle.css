@@ -103,7 +103,7 @@
 	font-size: 0.5em;
 	pointer-events: none;
 	border-radius: 100%;
-	background-image: radial-gradient(circle, transparent 0%, red 75%);
+	background-image: radial-gradient(circle, transparent 15%, red 75%);
 	background-color: red;
 	position: absolute;
 	top: 0.5em;
@@ -227,13 +227,13 @@
 		background-color: red;
 		box-shadow: 0 0 20px 5px red;
 	}
-	25% {
+	20% {
 		background-color: white;
-		box-shadow: 0 0 40px 14px red;
+		box-shadow: 0 0 40px 19px red;
 	}
 	100% {
 		background-color: red;
-		box-shadow: 0 0 20px 5px red;
+		box-shadow: 0 0 20px 8px red;
 	}
 }
 

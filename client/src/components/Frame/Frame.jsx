@@ -4,8 +4,9 @@ import { useSelector } from "react-redux";
 
 import './frame.css';
 import { selectMenuIsOpen } from "../../gameSlice";
+import { ignoreTransition } from "../../utils/effects";
 
-export default function Frame({ children }) {
+export default function Frame({ className, children }) {
     const [mounted, setMounted] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -54,7 +55,7 @@ export default function Frame({ children }) {
         
         const rect = buttonRef.current.getBoundingClientRect();
         setToRect(rect, frameRef.current);
-
+        
         frameRef.current.classList.add('open');
 
         const borders = borderRef.current.children;
@@ -134,8 +135,11 @@ export default function Frame({ children }) {
     }
 
     return (
-        <div className="frame-container">
-            <div className="frame-button" onClick={handleClickButton} ref={buttonRef}></div>
+        <div className={`frame-container ${className ? className : ''}`}>
+            <div className="frame-button" onClick={handleClickButton} ref={buttonRef}>
+                <div className="frame-button-border"></div>
+                <div className="frame-button-border-shadow"></div>
+            </div>
             {mounted && createPortal(
                 <div className="frame" ref={frameRef}>
                     <div className="frame-content-wrapper" ref={contentRef}>

@@ -42,6 +42,20 @@ export const ignoreTransition = (element, property, target) => {
   });
 }
 
+export const ignoreTransitionTemp = (element, property, target, delay) => {
+  const elementTransition = element.style.transition;
+
+  element.style.transition = 'none';
+  element.style.setProperty(property, target);
+
+  element.offsetHeight;
+  
+  setTimeout(() => {
+    element.style.transition = null;
+    element.style.setProperty(property, null);
+  }, delay * 1000);
+}
+
 export const ignoreTransformTransition = (element, targetTransform) => {
   const elementTransition = element.style.transition;
 

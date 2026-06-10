@@ -34,6 +34,14 @@ body {
 
   --main-content-width: 800px;
   --global-padding: 42px;
+  --negative-global-padding: -42px;
+}
+
+@media (max-width: 480px) {
+  body {
+    --global-padding: 20px;
+    --negative-global-padding: -20px;
+  }
 }
 
 h1, h2, h3, h4, p {

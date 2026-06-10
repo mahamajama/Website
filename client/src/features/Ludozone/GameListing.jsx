@@ -11,48 +11,32 @@ export default function GameListing({ data }) {
     }
 
     return (
-        <li className={`game-listing ${isOpen ? 'open' : ''}`}>
-            <button onClick={toggleOpen} type="button">
-                <h2 className="game-name">{data.name}</h2>
-            </button>
-            <div className={`game-listing-details-wrapper ${isOpen ? 'open' : ''}`}>
-                <div className={`game-listing-details`}>
+        <>
+        <tr className={`game-listing ${isOpen ? 'open' : ''}`}>
+            <td className="game-name" onClick={toggleOpen}>{data.name}</td>
+            <td>{data.completed_min_date}</td>
+            <td>{data.released_date}</td>
+            <td>{data.platform}</td>
+        </tr>
+        <tr colSpan={10} className={`game-listing-details-wrapper ${isOpen ? 'open' : ''}`}>
+            <td className={`game-listing-details`}>
+                {data.completion_description &&
                     <div className="game-listing-detail">
-                        <h3>Completed:</h3>
-                        <p>{data.completed_min_date}</p>
+                        <h3>Completion Details:</h3>
+                        <p>{data.completion_description}</p>
                     </div>
-                    {data.started && 
-                        <div className="game-listing-detail">
-                            <h3>Started:</h3>
-                            <p>{data.started}</p>
-                        </div>
-                    }
-                    {data.completion_description &&
-                        <div className="game-listing-detail">
-                            <h3>Completion Details:</h3>
-                            <p>{data.completion_description}</p>
-                        </div>
-                    }
-                    {data.notes &&
-                        <div className="game-listing-detail">
-                            <h3>Notes:</h3>
-                            <p>{data.notes}</p>
-                        </div>
-                    }
-                    {data.released &&
-                        <div className="game-listing-detail">
-                            <h3>Released:</h3>
-                            <p>{data.released_date}</p>
-                        </div>
-                    }
-                    {data.platform && 
-                        <div className="game-listing-detail">
-                            <h3>Platform:</h3>
-                            <p>{data.platform}</p>
-                        </div>
-                    }
-                </div>
-            </div>
-        </li>
+                }
+                {data.notes &&
+                    <div className="game-listing-detail">
+                        <h3>Notes:</h3>
+                        <p>{data.notes}</p>
+                    </div>
+                }
+                {data.started_date &&
+                    <td>{data.started_date}</td>
+                }
+            </td>
+        </tr>
+        </>
     );
 }

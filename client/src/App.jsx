@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import './App.css';
 
 import { selectMenuIsOpen } from './gameSlice';
@@ -31,12 +31,36 @@ async function handleRequest(request) {
 addEventListener("fetch", event => event.respondWith(handleRequest(event.request)));
 
 export default function App() {
+    const location = useLocation();
+
+    const [mounted, setMounted] = useState(false);
+
     const menuIsOpen = useSelector(selectMenuIsOpen);
+
+    const containerRef = useRef(null);
+    const prevLocationRef = useRef(location.pathname);
+
+    useEffect(() => {
+        if (!mounted && containerRef.current) {
+            setMounted(true);
+        }
+    }, [containerRef.current]);
+
+    useEffect(() => {
+        if (mounted && location.pathname !== prevLocationRef.current) {
+            containerRef.current.scroll({
+                top: 0,
+                left: 0, 
+                behavior: 'smooth'
+            });
+        }
+        prevLocationRef.current = location.pathname;
+    }, [location]);
 
     return (
         <>
         <Menu />
-        <main id="container" className={menuIsOpen ? 'blurred' : ''}>
+        <main id="container" className={menuIsOpen ? 'blurred' : ''} ref={containerRef}>
             <Outlet />
         </main>
         <Background />

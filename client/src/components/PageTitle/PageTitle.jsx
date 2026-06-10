@@ -54,7 +54,7 @@ export default function PageTitle({ title, actions, children }) {
                             return (
                                 <div 
                                     className='letter-container-container' 
-                                    style={{animationDelay: `${letter.index * 0.25}s`,}} 
+                                    style={{ animationDelay: `${letter.index * 0.25}s` }} 
                                     key={letter.key}
                                 >
                                     <PageTitleLetter 

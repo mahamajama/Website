@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207 207">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g>
+    <polygon class="cls-1" points="180 126 180 117 171 117 171 108 162 108 162 117 153 117 153 126 144 126 144 135 135 135 135 144 126 144 126 153 117 153 117 162 108 162 108 171 117 171 117 180 126 180 126 189 162 189 162 180 171 180 171 171 180 171 180 162 189 162 189 126 180 126"/>
+    <polygon class="cls-1" points="45 153 45 144 36 144 36 108 45 108 45 90 54 90 54 81 63 81 63 72 72 72 72 63 81 63 81 54 90 54 90 45 108 45 108 36 144 36 144 45 153 45 153 63 162 63 162 36 153 36 153 27 99 27 99 36 81 36 81 45 72 45 72 54 63 54 63 63 54 63 54 72 45 72 45 81 36 81 36 99 27 99 27 153 36 153 36 162 63 162 63 153 45 153"/>
+    <polygon class="cls-1" points="117 90 99 90 99 99 90 99 90 117 90 126 99 126 99 117 108 117 108 108 117 108 117 99 126 99 126 90 117 90"/>
+  </g>
+  <g>
+    <rect class="cls-1" x="54" y="180" width="9" height="18"/>
+    <rect class="cls-1" x="63" y="171" width="9" height="18"/>
+    <rect class="cls-1" x="72" y="162" width="9" height="18"/>
+    <rect class="cls-1" x="81" y="153" width="9" height="18"/>
+    <rect class="cls-1" x="90" y="144" width="9" height="18"/>
+    <rect class="cls-1" x="99" y="135" width="9" height="18"/>
+    <rect class="cls-1" x="108" y="126" width="9" height="18"/>
+    <rect class="cls-1" x="117" y="117" width="9" height="18"/>
+    <rect class="cls-1" x="126" y="108" width="9" height="18"/>
+    <rect class="cls-1" x="135" y="99" width="9" height="18"/>
+    <rect class="cls-1" x="144" y="90" width="9" height="18"/>
+    <rect class="cls-1" x="153" y="81" width="9" height="18"/>
+    <rect class="cls-1" x="162" y="72" width="9" height="18"/>
+    <rect class="cls-1" x="171" y="63" width="9" height="18"/>
+    <rect class="cls-1" x="180" y="54" width="9" height="18"/>
+    <rect class="cls-1" x="189" y="45" width="9" height="18"/>
+  </g>
+</svg>

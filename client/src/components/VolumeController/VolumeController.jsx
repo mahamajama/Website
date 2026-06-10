@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import './volumeController.css';
@@ -40,18 +40,23 @@ export default function VolumeController() {
 
     return (
         <div className="volume-controller">
-            <input 
-                type="range" 
-                id="volume" 
-                name="volume" 
-                min="0" 
-                max="10" 
-                step="any"
-                value={displayVolume}
-                onChange={handleChangeVolume}
-            />
-            <button onClick={handleClickMute} type="button">A</button>
-            <p>{parseFloat(displayVolume).toFixed(1)}</p>
+            <div className="volume-slider-wrapper">
+                <input 
+                    type="range" 
+                    id="volume" 
+                    name="volume" 
+                    min="0" 
+                    max="10" 
+                    step="any"
+                    value={displayVolume}
+                    onChange={handleChangeVolume}
+                />
+            </div>
+            <button onClick={handleClickMute} type="button">
+                <img className={`volume-icon ${displayVolume == 0 ? 'hidden' : ''}`} src={`icons/soundOn.svg`} />
+                <img className={`volume-icon ${displayVolume != 0 ? 'hidden' : ''}`} src={`icons/soundOff.svg`} />
+            </button>
+            <p className="volume-controller-current">{parseFloat(displayVolume).toFixed(1)}</p>
         </div>
     );
 }

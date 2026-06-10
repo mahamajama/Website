@@ -1,59 +1,74 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { lettersExploded, flipped } from "../../features/Home/homeSlice";
+import { selectFlipped } from "../../features/Home/homeSlice";
 import { ignoreTransition } from "../../utils/effects";
 
-export default function PageTitleLetter({ letter, index, onClick }) {
-    const [isMounted, setIsMounted] = useState(false);
+export default function PageTitleLetter({ letter, index, onClick, delay, exploded, flipped, children }) {
+    const [mounted, setMounted] = useState(false);
     const [isExploded, setIsExploded] = useState(false);
 
-    const explodedList = useSelector(lettersExploded);
-    const lettersAreFlipped = useSelector(flipped);
+    const lettersAreFlipped = useSelector(selectFlipped);
 
-    const letterElement = useRef(null);
+    const letterRef = useRef(null);
+    const timeoutRef = useRef(null);
+    
+    useEffect(() => {
+        if (!mounted && letterRef.current) {
+            if (flipped) {
+                ignoreTransition(letterRef.current, 'rotate', '1620deg');
+            }
+            setMounted(true);
+        }
+    }, [letterRef.current]);
+    
+    useEffect(() => {
+        setIsExploded(exploded);
+    }, [exploded]);
+    
+    useEffect(() => {
+        flip();
+        return () => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        }
+    }, [flipped]);
+    
+    const flipDelay = index * 0.1 * 1000;
+    useEffect(() => {
+        flip();
+        return () => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        }
+    }, [lettersAreFlipped]);
 
     function handleClick(e) {
         if (onClick) onClick(e);
     }
 
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
-    useEffect(() => {
-        if (explodedList.includes(index)) setIsExploded(true);
-    }, [explodedList])
-
-    const flipDelay = index * 0.1 * 1000;
-    let currentTimeout;
-    useEffect(() => {
-        if (isMounted) {
-            if (letterElement.current) {
-                clearTimeout(currentTimeout);
-                currentTimeout = setTimeout(() => {
-                    const finalRotation = lettersAreFlipped ? '1620deg' : '0deg';
-                    letterElement.current.style.rotate = finalRotation;
-                }, flipDelay);
-            }
-        } else {
-            if (letterElement.current) {
-                const finalRotation = lettersAreFlipped ? '1620deg' : '0deg';
-                ignoreTransition(letterElement.current, 'rotate', finalRotation);
-            }
+    function flip() {
+        if (letterRef.current) {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            timeoutRef.current = setTimeout(() => {
+                if (letterRef.current) {
+                    const finalRotation = flipped ? '1620deg' : '0deg';
+                    letterRef.current.style.rotate = finalRotation;
+                }
+            }, flipDelay);
         }
-    }, [lettersAreFlipped])
-
-    const style = {animationDelay: `${index * 0.25}s`,}
+    }
 
     return(
-        <>
-        {!isExploded &&
-            <div className="letter-container" onClick={handleClick}>
-                <div className="letter-action-container">
-                    <h1 className="select-disable" ref={letterElement}>{letter ? letter : 'F'}</h1>
+        <div 
+            className='letter-container-container' 
+            style={{ animationDelay: `${delay}s` }} 
+        >
+            {!isExploded &&
+                <div className="letter-container" onClick={handleClick}>
+                    <div className="letter-action-container">
+                        <h1 className="select-disable" ref={letterRef}>{letter ? letter : 'F'}</h1>
+                    </div>
                 </div>
-            </div>
-        }
-        </>
+            }
+            {children}
+        </div>
     );
 }

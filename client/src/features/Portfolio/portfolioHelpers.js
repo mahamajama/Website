@@ -22,6 +22,11 @@ export const skills = {
             type: 'Technology',
             logo: `images/portfolio/skills/logo_postgresql.svg`,
         },
+        three: {
+            name: `three.js`,
+            type: 'Technology',
+            logo: `images/portfolio/skills/logo_three.svg`,
+        },
         photoshop: {
             name: `Adobe Photoshop`,
             type: 'Tool',

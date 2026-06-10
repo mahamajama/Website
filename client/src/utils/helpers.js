@@ -16,6 +16,7 @@ export function getRandomNumber(min, max) {
 export const lerp = (start, end, speed) => {
     return start + (end - start) * speed;
 }
+
 export const inerpolators = {
     identity: function(t){
         t = Math.max(0,Math.min(1,t));
@@ -34,6 +35,35 @@ export const inerpolators = {
         var range = 10.5*Math.PI;
         return (range - Math.sin(range*t)/t)/(range - 1);
     }
+}
+
+// via: https://spicyyoghurt.com/tools/easing-functions
+export const ease = {
+    linear: (elapsed, start, end, duration) => {
+        return end * elapsed / duration + start;
+    },
+    easeInQuad: (elapsed, start, end, duration) => {
+        return end * (elapsed /= duration) * t + start;
+    },
+    easeOutQuad: (elapsed, start, end, duration) => {
+        return -end * (elapsed /= duration) * (elapsed - 2) + start;
+    },
+    easeInOutQuad: (elapsed, start, end, duration) => {
+        if ((elapsed /= duration / 2) < 1) return end / 2 * elapsed * elapsed + start;
+        return -end / 2 * ((--elapsed) * (elapsed - 2) - 1) + start;
+    },
+    easeInExpo (elapsed, start, end, duration) {
+        return (elapsed == 0) ? start : end * Math.pow(2, 10 * (elapsed / duration - 1)) + start;
+    },
+    easeOutExpo (elapsed, start, end, duration) {
+        return (elapsed == duration) ? start + end : end * (-Math.pow(2, -10 * elapsed / duration) + 1) + start;
+    },
+    easeInOutExpo (elapsed, start, end, duration) {
+        if (elapsed == 0) return start;
+        if (elapsed == duration) return start + end;
+        if ((elapsed /= duration / 2) < 1) return end / 2 * Math.pow(2, 10 * (elapsed - 1)) + start;
+        return end / 2 * (-Math.pow(2, -10 * --elapsed) + 2) + start;
+    },
 }
 
 

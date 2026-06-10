@@ -166,6 +166,7 @@ let currentFlavor = flavors.mystify;
 let interval = currentFlavor.distance;
 let iterations = interval * currentFlavor.shapeN;
 let lastFrame = null;
+
 function mystify(canvas, ctx, t) {
     //if (!lastFrame) lastFrame = t - 6;
     //const delta = t - lastFrame;
