@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Outlet, useLocation } from 'react-router';
 import './App.css';
 
@@ -47,14 +47,15 @@ export default function App() {
     }, [containerRef.current]);
 
     useEffect(() => {
-        if (mounted && location.pathname !== prevLocationRef.current) {
+        const path = location.pathname;
+        if (mounted && path !== prevLocationRef.current) {
             containerRef.current.scroll({
                 top: 0,
                 left: 0, 
                 behavior: 'smooth'
             });
         }
-        prevLocationRef.current = location.pathname;
+        prevLocationRef.current = path;
     }, [location]);
 
     return (
@@ -63,7 +64,6 @@ export default function App() {
         <main id="container" className={menuIsOpen ? 'blurred' : ''} ref={containerRef}>
             <Outlet />
         </main>
-        <Background />
         <WindowManager />
         </>
     )

@@ -5,6 +5,8 @@ import App from './App'
 import Home from './features/Home/Home'
 import ShaderBackground from "./features/Background/ShaderBackground";
 import Ludozone from "./features/Ludozone/Ludozone";
+import PortfolioRedirect from "./features/Portfolio/PortfolioRedirect";
+import HotFire from "./features/HotFire/HotFire";
 
 export default function Router() {
   return (
@@ -12,9 +14,13 @@ export default function Router() {
   )
 }
 
-const middlewareTemplate = async ({ request }, next) => {
+const middleware = async ({ request }, next) => {
   console.log(request);
   next();
+}
+
+async function loader({ params }) {
+  return { message: 'hello world' };
 }
 
 const router = createBrowserRouter([
@@ -22,11 +28,22 @@ const router = createBrowserRouter([
         path: "/",
         Component: App,
         children: [
-        { index: true, Component: Home },
-        { 
-            path: 'ludozone',
-            Component: Ludozone,
-        },
+            {
+                index: true, 
+                Component: Home,
+            },
+            { 
+                path: 'ludozone',
+                Component: Ludozone,
+            },
+            { 
+                path: 'portfolio',
+                Component: PortfolioRedirect,
+            },
+            { 
+                path: 'hotfire',
+                Component: HotFire,
+            },
         ],
     },
     { 

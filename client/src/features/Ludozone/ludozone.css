@@ -3,7 +3,25 @@
 
 #ludozone {
     width: 100%;
-    height: 100%;
+    height: 220px;
+}
+
+#ludozone .page-title {
+    margin-left: var(--negative-global-padding);
+    align-content: end;
+    justify-content: start;
+    font-size: 9rem;
+}
+
+#ludozone .letter-container-container {
+    animation: none;
+}
+
+.jupiter {
+    position: absolute;
+    z-index: -1;
+    top: -566px;
+    left: -280px; 
 }
 
 .the-list-title {

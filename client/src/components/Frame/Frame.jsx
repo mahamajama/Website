@@ -145,7 +145,7 @@ export default function Frame({ className, children }) {
                     <div className="frame-content-wrapper" ref={contentRef}>
                         <button className="frame-close-button" onClick={handleClickClose} type="button">X</button>
                         <div className="frame-content">
-                            {children}
+                            {isOpen && children}
                         </div>
                         <div className="frame-content-background"></div>
                     </div>

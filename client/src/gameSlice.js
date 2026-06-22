@@ -4,6 +4,7 @@ export const gameSlice = createSlice({
     name: 'game',
     initialState: {
         isDebugMode: false,
+        isPortfolio: false,
         flags: [],
         inventory: [],
         menuIsOpen: false,
@@ -13,6 +14,9 @@ export const gameSlice = createSlice({
     reducers: {
         setIsDebugMode: (state, action) => {
             state.isDebugMode = action.payload;
+        },
+        setIsPortfolio: (state, action) => {
+            state.isPortfolio = action.payload;
         },
         setFlag: (state, action) => {
             state.flags.push(action.payload);
@@ -50,10 +54,11 @@ export const allItems = {
     },
 }
 
-export const isDebugMode = (state) => state.game.isDebugMode;
+export const selectIsDebugMode = (state) => state.game.isDebugMode;
+export const selectIsPortfolio = (state) => state.game.isPortfolio;
 export const selectFlags = (state) => state.game.flags;
 export const selectInventory = (state) => state.game.inventory;
 export const selectMenuIsOpen = (state) => state.game.menuIsOpen;
 export const selectNotification = (state) => state.game.notification;
-export const { setIsDebugMode, setFlag, addToInventory, setMenuIsOpen, setNotification } = gameSlice.actions;
+export const { setIsDebugMode, setIsPortfolio, setFlag, addToInventory, setMenuIsOpen, setNotification } = gameSlice.actions;
 export default gameSlice.reducer;

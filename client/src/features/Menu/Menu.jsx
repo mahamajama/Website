@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router';
 
-import { setMenuIsOpen, selectMenuIsOpen, selectNotification, setNotification } from '../../gameSlice';
+import { setMenuIsOpen, selectMenuIsOpen, selectNotification, setNotification, selectIsDebugMode } from '../../gameSlice';
 import Inventory from './Inventory';
 import './menu.css';
 import ItemDetails from './ItemDetails';
@@ -17,6 +17,7 @@ export default function Menu() {
 
     const isOpen = useSelector(selectMenuIsOpen);
     const notification = useSelector(selectNotification);
+    const isDebugMode = useSelector(selectIsDebugMode);
 
     const prevLocation = useRef(location.pathname);
 
@@ -56,9 +57,13 @@ export default function Menu() {
                     <div className="menu-content-container content-container">
                         <nav className="main-nav">
                             <NavLink to="/" className="nav-link">HOME</NavLink>
-                            <NavLink to="/coolbox" className="nav-link">COOLBOX</NavLink>
                             <NavLink to="/ludozone" className="nav-link">LUDOZONE</NavLink>
-                            <NavLink to="/shader" className="nav-link">OLDWOOD</NavLink>
+                            {isDebugMode && 
+                            <>
+                                <NavLink to="/coolbox" className="nav-link">COOLBOX</NavLink>
+                                <NavLink to="/shader" className="nav-link">OLDWOOD</NavLink>
+                            </>
+                            }
                         </nav>
                         <Inventory onItemSelected={handleItemSelected} />
                     </div>

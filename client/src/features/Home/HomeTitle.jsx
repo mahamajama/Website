@@ -2,26 +2,35 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
-import { explodeO2, flipLetters, selectO2Exploded, selectFlipped } from "./homeSlice";
-import { setFlag, selectFlags, allItems } from '../../gameSlice';
+import { setJColor, selectJColor, explodeO1, explodeO2, selectO1Exploded, selectO2Exploded, flipLetters, selectFlipped, setSPosition, selectSPosition } from "./homeSlice";
+import { setFlag, selectFlags, allItems, selectInventory } from '../../gameSlice';
 import { openWindow } from '../../components/Windows/windowsSlice';
 import PageTitle from "../../components/PageTitle/PageTitle";
 import ItemPickup from '../../components/Items/ItemPickup';
 import LetterBomb from '../../components/PageTitle/LetterBomb';
 
 import sound from '../Audio/audio.js';
-import { colorRoulette } from '../../utils/effects';
+import { blipSound } from '../../utils/effects';
 import { getTranslate } from '../../utils/helpers';
 
 import totakasSrc from '/sounds/MP_totakasSong.wav?url';
 import PageTitleLetter from '../../components/PageTitle/PageTitleLetter.jsx';
+import { Link } from 'react-router';
 const totakasSong = new sound(totakasSrc);
 
 export default function HomeTitle() {
     const dispatch = useDispatch();
 
+    const flags = useSelector(selectFlags);
+    const inventory = useSelector(selectInventory);
+
+    const jColor = useSelector(selectJColor);
+    const o1Exploded = useSelector(selectO1Exploded);
     const o2Exploded = useSelector(selectO2Exploded);
     const lettersAreFlipped = useSelector(selectFlipped);
+    const sPosition = useSelector(selectSPosition);
+
+    const jColorTimeout = useRef(null);
 
     const timRunRef = useRef(null);
     const boxPickupContainer = useRef(null);
@@ -39,6 +48,45 @@ export default function HomeTitle() {
         delta: { x: 0, y: 0 },
     });
 
+    function colorRoulette(e) {
+        const tics = 16;
+        let colors = [
+            '#ff0000', '#ff9900', '#ffff00', '#00ff00',
+            '#00ffff', '#0000ff', '#ff00ff', '#9900ff',
+        ];
+
+        let currentColor = '#ffffff';
+        function getRandomColor() {
+            const i = Math.floor(Math.random() * colors.length);
+            const newColor = colors[i];
+            colors[i] = currentColor;
+            currentColor = newColor;
+            return currentColor;
+        }
+
+        let i = 0;
+        let delay = 100;
+        function spinColor() {
+            delay *= 1.1;
+            const newColor = getRandomColor();
+            e.target.children[0].children[0].style.color = getRandomColor();
+            i++;
+
+            blipSound.replay();
+
+            if (i < tics) {
+                jColorTimeout.current = setTimeout(() => {
+                    spinColor();
+                }, delay);
+            } else {
+                dispatch(setJColor(newColor));
+            }
+        }
+
+        if (jColorTimeout.current) clearTimeout(jColorTimeout.current);
+        spinColor();
+    }
+
     function fallOffscreen(e) {
         e.target.classList.add('pointer-disable');
         e.target.parentElement.style.animationPlayState = 'paused';
@@ -47,7 +95,7 @@ export default function HomeTitle() {
         e.target.children[0].addEventListener('animationend', onAnimationEnd);
         function onAnimationEnd() {
             e.target.children[0].removeEventListener('animationend', onAnimationEnd);
-            e.target.children[0].style.display = 'none';
+            dispatch(explodeO1());
         }
     }
 
@@ -58,9 +106,13 @@ export default function HomeTitle() {
         } else {
             e.target.style.transform = "translate(0, -30px)";
             e1IsOpen.current = true;
-            timRunRef.current.classList.add("revealed");
-            boxPickupContainer.current.classList.add("revealed");
-            dispatch(setFlag("found ornate box"));
+            if (!flags.includes("found ornate box")) {
+                timRunRef.current.classList.add("revealed");
+                dispatch(setFlag("found ornate box"));
+            }
+            if (!inventory.find(item => item.name === 'ornateBox')) {
+                boxPickupContainer.current.classList.add("revealed");
+            }
         }
     }
 
@@ -73,7 +125,9 @@ export default function HomeTitle() {
             e.target.style.transformOrigin = 'bottom right';
             e.target.style.transform = "rotate(45deg)";
             e2IsOpen.current = true;
-            nutPickupContainer.current.classList.add("revealed");
+            if (!inventory.find(item => item.name === 'nut')) {
+                nutPickupContainer.current.classList.add("revealed");
+            }
         }
     }
 
@@ -139,6 +193,10 @@ export default function HomeTitle() {
 
             container.removeEventListener('mousemove', onMoveS, true);
             container.removeEventListener('scroll', onScrollS, true);
+
+            const finalX = mousePos.current.x - sOffset.current[0] - scrollPos.current.delta.x;
+            const finalY = mousePos.current.y - sOffset.current[1] - scrollPos.current.delta.y;
+            dispatch(setSPosition({ x: finalX, y: finalY }));
         } else {
             sIsSticky.current = true;
 
@@ -170,6 +228,7 @@ export default function HomeTitle() {
                     delay={0}
                     exploded={false}
                     flipped={lettersAreFlipped}
+                    color={jColor}
                 >
                 </PageTitleLetter>
                 <PageTitleLetter 
@@ -177,7 +236,7 @@ export default function HomeTitle() {
                     index={1} 
                     onClick={fallOffscreen} 
                     delay={0.25}
-                    exploded={false}
+                    exploded={o1Exploded}
                     flipped={lettersAreFlipped}
                 >
                 </PageTitleLetter>
@@ -224,20 +283,26 @@ export default function HomeTitle() {
                     flipped={lettersAreFlipped}
                 >
                 </PageTitleLetter>
-                <PageTitleLetter 
-                    letter="O" 
-                    index={5} 
-                    onClick={null} 
-                    delay={1.25}
-                    exploded={o2Exploded}
-                    flipped={lettersAreFlipped}
-                >
-                    <LetterBomb 
-                        initCount={4}
-                        letterIndex={5}
-                        onExplode={handleExplode}
-                    />
-                </PageTitleLetter>
+                <div className="letter-wrapper">
+                    <PageTitleLetter 
+                        letter="O" 
+                        index={5} 
+                        onClick={null} 
+                        delay={1.25}
+                        exploded={o2Exploded}
+                        flipped={lettersAreFlipped}
+                    >
+                        <LetterBomb 
+                            initCount={4}
+                            letterIndex={5}
+                            onExplode={handleExplode}
+                        />
+                    </PageTitleLetter>
+                    <div className={`hot-fire-hole ${o2Exploded ? 'visible' : ''}`}>
+                        <img className="select-disable" src="/images/home/hotFireHole_front.gif" />
+                        <Link to="/hotfire"></Link>
+                    </div>
+                </div>
                 <PageTitleLetter 
                     letter="S" 
                     index={6} 
@@ -245,6 +310,7 @@ export default function HomeTitle() {
                     delay={1.5}
                     exploded={false}
                     flipped={lettersAreFlipped}
+                    position={sPosition}
                 >
                 </PageTitleLetter>
                 <PageTitleLetter 
@@ -263,6 +329,7 @@ export default function HomeTitle() {
                     </div>
                 </PageTitleLetter>
             </div>
+            
         </div>
     );
 }

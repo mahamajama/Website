@@ -2,6 +2,12 @@
 
 
 
+#home {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
 #ornate-box-pickup {
     position: absolute;
 	z-index: -2;
@@ -14,9 +20,12 @@
 	z-index: -1;
     left: 1.5rem;
 	bottom: 0;
+	opacity: 0;
+    pointer-events: none;
 
 	&.revealed {
 		z-index: 2;
+		opacity: 1;
 		animation: exitStageRight 2s forwards;
 	}
 }
@@ -26,6 +35,39 @@
 	z-index: -1;
     left: 0;
 	bottom: 0;
+}
+
+.hot-fire-hole {
+	position: absolute;
+	top: -15px;
+	left: -42px;
+	width: 128px;
+	height: 128px;
+	opacity: 0;
+	pointer-events: none;
+	
+	&.visible {
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
+
+.hot-fire-hole img {
+	position: relative;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+}
+
+.hot-fire-hole a {
+	position: absolute;
+	z-index: 1;
+	top: 26px;
+	left: 40px;
+	width: 62px;
+	height: 76px;
+	border-radius: 30px;
+	cursor: pointer;
 }
 
 @keyframes exitStageRight {

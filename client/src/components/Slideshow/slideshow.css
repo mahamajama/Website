@@ -114,6 +114,11 @@
     cursor: default;
 }
 
+.slide-number {
+    float: right;
+    font-weight: 200;
+}
+
 
 
 

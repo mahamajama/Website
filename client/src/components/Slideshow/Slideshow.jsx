@@ -40,7 +40,9 @@ export default function Slideshow({ slides, onChange }) {
                     {slides && slides.map((slide, i) => {
                         return (
                             <div className={`slide slide-position-${i - position}`} key={`slide_${i}_${slide.title}`}>
-                                {slide.title && <h3>{slide.title}</h3>}
+                                {slide.title && 
+                                    <h3>{slide.title}<span className="slide-number">{`${i + 1}/${slides.length}`}</span></h3>
+                                }
                                 <div className="slide-content">
                                     {slide.content}
                                 </div>

@@ -55,8 +55,8 @@ export default function LetterBomb({ initCount, letterIndex, onExplode }) {
             explosion.current.src = explosionImg.src;
             explosionSound.play();
             setTimeout(() => {
-                explosion.current.classList.add('exploded');
-            }, 2000)
+                if (explosion.current) explosion.current.classList.add('exploded');
+            }, 2000);
         });
     }
 

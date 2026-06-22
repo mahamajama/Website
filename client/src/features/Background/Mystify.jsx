@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { isDebugMode } from "../../gameSlice";
+import { selectIsDebugMode } from "../../gameSlice";
 import Dropdown from "../../components/Dropdown/Dropdown";
     
 let flavors = {
@@ -294,7 +294,9 @@ function initMystify(canvas, targetFlavor) {
         return (Math.random() * (currentFlavor.speed * 2)) - currentFlavor.speed;
     }
     function calcYSpeed(xSpeed) {
-        return currentFlavor.speed - Math.abs(xSpeed);
+        let speed = currentFlavor.speed - Math.abs(xSpeed);
+        if (xSpeed < 0) speed *= -1;
+        return speed;
     }
 
     const startX = canvas.width / 2;
@@ -317,7 +319,7 @@ export default function Mystify() {
     const [flavor, setFlavor] = useState('mystify');
     const [mounted, setMounted] = useState(false);
     const backgroundCanvas = useRef(null);
-    const debugMode = useSelector(isDebugMode);
+    const debugMode = useSelector(selectIsDebugMode);
     
     useEffect(() => {
         if (!mounted && backgroundCanvas.current) {

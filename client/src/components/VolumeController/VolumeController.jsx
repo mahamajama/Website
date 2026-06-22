@@ -12,18 +12,21 @@ export default function VolumeController() {
 
     function mute() {
         lastVolume.current = displayVolume;
-
         setDisplayVolume(0);
         dispatch(setMasterVolume(0));
     }
 
     function updateVolume(displayVolume) {
-        const tenthVolume = displayVolume * 0.1
+        const tenthVolume = displayVolume * 0.1;
         const newVolume = tenthVolume * tenthVolume;
 
         setDisplayVolume(displayVolume);
         dispatch(setMasterVolume(newVolume));
     }
+
+    useEffect(() => {
+        setDisplayVolume(masterVolume * 10);
+    }, []);
 
     function handleChangeVolume(e) {
         const newDisplayVolume = e.target.value;

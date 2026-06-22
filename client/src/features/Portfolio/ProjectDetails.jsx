@@ -5,7 +5,8 @@ import Slideshow from "../../components/Slideshow/Slideshow";
 import SkillsList from "./SkillsList";
 
 export default function ProjectDetails({ className, data }) {
-    const [description, setDescription] = useState(['']);
+    const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+    const [description, setDescription] = useState([{ m: '' }]);
     const [descriptionToRender, setDescriptionToRender] = useState(['']);
 
     const toRender = useRef(['']);
@@ -13,7 +14,8 @@ export default function ProjectDetails({ className, data }) {
     const c = useRef(0);
     const timeout = useRef(null);
 
-    const messageSpeed = 1;
+    const charsPerTic = 2;
+    const messageSpeed = 0;
     const pauseSpeed = 100;
 
     useEffect(() => {
@@ -21,9 +23,20 @@ export default function ProjectDetails({ className, data }) {
         printDescription();
     }, [description]);
 
-    function getParagraphs(string) {
-        const split = string.split(`\n\n`);
-        return split;
+    function getLines(string) {
+        const split = string.split(`\n`);
+        const lines = split.map(str => {
+            const trimmed = str.trim();
+            let line = {
+                m: trimmed,
+                type: 'p',
+            };
+            if (trimmed.slice(0, 2) === `- `) {
+                line.type = 'li';
+            };
+            return line;
+        });
+        return lines;
     }
 
     function printDescription() {
@@ -40,8 +53,8 @@ export default function ProjectDetails({ className, data }) {
     }
     
     function printNext() {
-        const string = description[p.current];
-        if (string && c.current < string.length) {
+        const string = description[p.current].m;
+        if (string != null && c.current < string.length) {
             if (string.charAt(c.current) === "@") {
                 c.current++;
                 timeout.current = setTimeout(printNext, pauseSpeed);
@@ -58,13 +71,21 @@ export default function ProjectDetails({ className, data }) {
                 timeout.current = setTimeout(printNext, messageSpeed);
             }
         }
+
+        function advanceChar(string) {
+            const actual = c.current + charsPerTic;
+            const n = Math.min(actual, string.length - 1);
+            c.current = n;
+            endOfP = actual >= string.length;
+        }
     }
 
     function handleSlideChanged(slideIndex) {
         const currentSlide = data.slides[slideIndex];
         if (data.slides && currentSlide) {
-            const description = getParagraphs(currentSlide.description || '');
+            const description = getLines(currentSlide.description || '');
             setDescription(description);
+            setCurrentSlideIndex(slideIndex);
         }
     }
 
@@ -79,7 +100,14 @@ export default function ProjectDetails({ className, data }) {
                 {data.demoUrl && <a className="project-link" href={datademoUrl}>View live demo...</a>}
                 <div className="project-details-info">
                     <div className="project-details-description">
-                        {descriptionToRender.map(paragraph => <p>{paragraph}</p>)}
+                        {data.slides && <h4 className="project-slide-counter">{`${currentSlideIndex + 1}/${data.slides.length}`}</h4>}
+                        {descriptionToRender.map((paragraph, i) => {
+                            if (description[i] && description[i].type === 'li') {
+                                return <li key={`pDDesc_line${i}`}>{paragraph}</li>;
+                            } else {
+                                return <p key={`pDDesc_line${i}`}>{paragraph}</p>;
+                            }
+                        })}
                     </div>
                     <div className="project-details-skills">
                         <h2>STACK</h2>

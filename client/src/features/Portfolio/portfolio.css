@@ -9,8 +9,7 @@
     display: flex;
     position: relative;
     width: 100%;
-    height: 100vh;
-    margin-bottom: 120px;
+    margin-bottom: 420px;
     align-items: center;
 }
 
@@ -56,9 +55,8 @@
     padding: 4px 16px 4px 8px;
     align-items: center;
     gap: 16px;
-    background-color: rgba(255, 255, 255, 0.15);
-    border: 1px solid white;
-    border-radius: 10px;
+    border-top: 2px solid white;
+    border-bottom: 1px dashed white;
 }
 
 .skills-listing img {
@@ -66,7 +64,8 @@
 }
 
 .skills-listing h3 {
-    font-size: 0.7em;
+    font-size: 1em;
+    font-family: 'JetBrainsMono', monospace;
 }
 
 
@@ -138,6 +137,7 @@
 }
 
 .project-details-description {
+    position: relative;
     padding-top: 42px;
     border-top: 24px black double;
     max-width: 800px;
@@ -148,11 +148,27 @@
     margin-top: 32px; 
 }
 
+.project-details-description li {
+    margin-top: 6px;
+    list-style: none;
+    text-indent: 1.5em hanging;
+}
+
+.project-slide-counter {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    font-family: 'JetBrainsMono', monospace;
+    font-weight: 200;
+    font-size: 12px;
+}
+
 .project-details .slide h4 {
     font-family: 'JetBrainsMono', monospace;
 }
 
 .project-details-skills {
+    height: fit-content;
     min-width: 300px;
     max-width: 440px;
     padding: 24px;
@@ -241,3 +257,47 @@
 .experience + .experience {
     margin-top: 80px;
 }
+
+.experience ul {
+    margin-top: 6px;
+    padding-top: 12px;
+    padding-left: 0.75em;
+    border-left: 1px dashed white;
+}
+
+.experience li {
+    margin-bottom: 12px;
+    font-family: 'JetBrainsMono', monospace;
+    font-size: 1.1em;
+    list-style: square;
+}
+
+.experience b {
+    font-weight: 900;
+}
+
+.experience-time {
+    font-family: 'JetBrainsMonoItalic';
+    font-size: 1.3em;
+}
+
+
+/* --- CONTACT */
+
+#portfolio-contact a {
+    font-family: 'JetBrainsMono', monospace;
+    color: rgb(0, 255, 0);
+}
+
+#portfolio-contact a:hover {
+    color: rgb(255, 255, 0);
+}
+
+
+
+
+
+
+
+
+
