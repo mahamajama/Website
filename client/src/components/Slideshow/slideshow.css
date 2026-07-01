@@ -84,7 +84,7 @@
     height: 100%;
 }
 
-.slide-content img {
+.slide-content img, .slide-content video {
     max-width: 100%;
 }
 

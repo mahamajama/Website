@@ -89,7 +89,7 @@ const blueditData = {
     slides: [
         {
             title: 'One-dit, Two-dit, Reddit, Bluedit',
-            content: <img src="images/portfolio/projects/bluedit/bluedit_slide01.gif" />,
+            content: <video loop autoPlay={true} src="images/portfolio/projects/bluedit/bluedit_slide01.mp4" type="video/mp4" />,
             description: 
                 `The goal for Bluedit was to create a reddit browsing app using whatever scraps of functionality I could squeeze out of Reddit's JSON API. If you're unfamiliar with this, try adding '.json' to the end of any reddit url. It'll give you a JSON file with the pages raw data. (Reddit began charging for use of their normal API in 2023.)
             
