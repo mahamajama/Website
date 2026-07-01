@@ -264,7 +264,8 @@
 
 .project-details .skills-list ul {
     margin: 4px 0 16px;
-    gap: 2px;
+    column-gap: 12px;
+    row-gap: 0px;
 }
 
 .project-details .skills-list h2 {
@@ -273,10 +274,11 @@
 
 .project-details .skills-listing {
     height: 36px;
-    padding: 3px 12px 3px 6px;
+    padding: 3px 0 3px 0;
     gap: 4px;
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 2px solid #00FF00;
+    background-color: #0006;
+    border-top: 2px solid #0F0;
+    border-bottom: 2px dashed #0F0;
 }
 
 .project-details .skills-listing img {

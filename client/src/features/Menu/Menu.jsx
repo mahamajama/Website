@@ -72,7 +72,6 @@ export default function Menu() {
 
     useEffect(() => {
         if (selectedItem) setSelectedItem(new Number(selectedItem));
-        console.log(inventory);
     }, [inventory]);
 
     function toggleOpen() {

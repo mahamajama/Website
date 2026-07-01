@@ -38,7 +38,7 @@
     width: 86px;
     height: 86px;
     background: 
-        no-repeat center/55% url(icons/hamburger.svg),
+        no-repeat center/55% url(/icons/hamburger.svg),
         radial-gradient(
             circle, 
             transparent 20%, 
@@ -374,9 +374,6 @@
     border: none;
     font-family: 'SierraSCI', 'JetBrainsMono';
     font-size: 12px;
-}
-
-.item-details-submit {
 }
 
 

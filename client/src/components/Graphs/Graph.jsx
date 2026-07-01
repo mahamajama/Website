@@ -111,8 +111,6 @@ export default function Graph({ yMin, yMax, data }) {
         const allDone = barsRef.current.every(bar => bar.done);
         if (!allDone) {
             lastFrameRef.current = requestAnimationFrame(animate);
-        } else {
-            console.log('Bar graph done!');
         }
     }
 

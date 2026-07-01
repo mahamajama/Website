@@ -40,11 +40,11 @@
 }
 
 .nut-cursor {
-  cursor: url('images/items/nut_cursor.png'), url('images/items/nut.png'), crosshair;
+  cursor: url('/images/items/nut_cursor.png'), url('/images/items/nut.png'), crosshair;
 }
 
 .roasted-nut-cursor {
-  cursor: url('images/items/roastedNut_cursor.png'), url('images/items/roastedNut.png'), crosshair;
+  cursor: url('/images/items/roastedNut_cursor.png'), url('/images/items/roastedNut.png'), crosshair;
 }
 
 @keyframes spritesheetY {
