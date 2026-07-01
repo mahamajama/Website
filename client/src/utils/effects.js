@@ -123,6 +123,10 @@ export function colorRoulette(e) {
   spinColor();
 }
 
+import nutSrc from '/sounds/nut.mp3?url';
+export const nutSound = new sound(nutSrc);
+nutSound.volume = 0.7;
+
 
 
 

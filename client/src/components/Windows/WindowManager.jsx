@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectWindows, openWindow } from "./windowsSlice";
 import { useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 import './windows.css';
 import Window from "./Window";

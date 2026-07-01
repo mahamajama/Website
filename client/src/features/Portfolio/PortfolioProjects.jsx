@@ -88,7 +88,7 @@ const blueditData = {
     },
     slides: [
         {
-            title: 'Onedit, Twodit, Reddit, Bluedit',
+            title: 'One-dit, Two-dit, Reddit, Bluedit',
             content: <img src="images/portfolio/projects/bluedit/bluedit_slide01.gif" />,
             description: 
                 `The goal for Bluedit was to create a reddit browsing app using whatever scraps of functionality I could squeeze out of Reddit's JSON API. If you're unfamiliar with this, try adding '.json' to the end of any reddit url. It'll give you a JSON file with the pages raw data. (Reddit began charging for use of their normal API in 2023.)
@@ -154,9 +154,9 @@ const cgcnData = {
             description: 
                 `Of course, after a rebranding, the need for a new wesbite is kind of self evident.
                 
-                My role was to provide the design for the main page of the new website, establishing it's design language, and working closely with leadership to ensure it included features to emphasize their connectedness and positive press.
+                My role was to provide the design for the main page of the new website, establishing it's design language, and working closely with leadership to ensure it included features to emphasize key priorities, like deep connections and positive press.
                 
-                Then I contracted a design firm we had a previous relationship with to develop the site and extend the design across the remaining pages.`,
+                Then we contracted a design firm we had a previous relationship with to develop the site and extend the design across the remaining pages.`,
         },
     ]
 }

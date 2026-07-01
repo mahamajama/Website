@@ -48,7 +48,6 @@
 	
 	&.visible {
 		opacity: 1;
-		pointer-events: auto;
 	}
 }
 
@@ -68,6 +67,11 @@
 	height: 76px;
 	border-radius: 30px;
 	cursor: pointer;
+	pointer-events: none;
+}
+
+.hot-fire-hole.visible a {
+	pointer-events: auto;
 }
 
 @keyframes exitStageRight {

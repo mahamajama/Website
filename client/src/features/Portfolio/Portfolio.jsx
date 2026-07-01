@@ -11,6 +11,10 @@ export default function Portfolio() {
     return (
         <>
         <div className="portfolio content-container">
+            <div className="scroll-indicator">
+                <h1>PORTFOLIO</h1>
+                <div className="indicator-arrow"></div>
+            </div>
             <PortfolioSkills />
             <PortfolioProjects />
             <PortfolioExperience />

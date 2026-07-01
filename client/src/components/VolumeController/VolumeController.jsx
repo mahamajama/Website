@@ -26,6 +26,7 @@ export default function VolumeController() {
 
     useEffect(() => {
         setDisplayVolume(masterVolume * 10);
+        dispatch(setMasterVolume(masterVolume));
     }, []);
 
     function handleChangeVolume(e) {

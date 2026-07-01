@@ -10,7 +10,7 @@ const explosionSound = new sound(explosionSoundSrc);
 
 const explosionImg = new Image();
 
-export default function LetterBomb({ initCount, letterIndex, onExplode }) {
+export default function LetterBomb({ initCount, letterIndex, onExplode, hasExploded }) {
     const [exploded, setExploded] = useState(false);
     const [count, setCount] = useState(getInitCount);
     const [showCount, setShowCount] = useState(false);
@@ -73,7 +73,7 @@ export default function LetterBomb({ initCount, letterIndex, onExplode }) {
 
     return (
         <>
-        {!exploded &&
+        {!hasExploded &&
             <div className="letter-bomb" onClick={handleClick}>
                 <p className={`letter-bomb-countdown select-disable ${showCount ? 'visible' : ''}`} ref={countdown}>{count}</p>
             </div>

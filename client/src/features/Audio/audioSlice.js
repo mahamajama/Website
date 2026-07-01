@@ -6,7 +6,7 @@ import { audioParent, updateMasterVolume } from './audio';
 export const audioSlice = createSlice({
     name: 'audio',
     initialState: {
-        masterVolume: 0.4,
+        masterVolume: 0.5,
     },
     reducers: {
         setMasterVolume: (state, action) => {

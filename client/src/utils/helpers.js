@@ -238,3 +238,35 @@ export function groupBy(objArray, property, nestedProperty = null) {
     }
     return grouped;
 }
+
+export function timer(callback, delay) {
+    let timeout, started, running;
+    let remaining = delay;
+
+    this.start = function() {
+        running = true;
+        started = new Date();
+        timeout = setTimeout(callback, remaining);
+    }
+
+    this.pause = function() {
+        running = false;
+        clearTimeout(timeout);
+        remaining -= new Date() - started;
+    }
+
+    this.getTimeLeft = function() {
+        if (running) {
+            this.pause();
+            this.start();
+        }
+
+        return remaining;
+    }
+
+    this.isRunning = function() {
+        return running;
+    }
+
+    this.start();
+}

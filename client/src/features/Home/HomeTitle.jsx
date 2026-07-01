@@ -296,6 +296,7 @@ export default function HomeTitle() {
                             initCount={4}
                             letterIndex={5}
                             onExplode={handleExplode}
+                            hasExploded={o2Exploded}
                         />
                     </PageTitleLetter>
                     <div className={`hot-fire-hole ${o2Exploded ? 'visible' : ''}`}>

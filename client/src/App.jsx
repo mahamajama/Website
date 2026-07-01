@@ -7,6 +7,7 @@ import { selectMenuIsOpen } from './gameSlice';
 import Background from './features/Background/Background';
 import WindowManager from './components/Windows/WindowManager';
 import Menu from './features/Menu/Menu';
+import EquipmentManager from './features/Equipment/EquipmentManager';
 
 if (mobileCheck()) {
     document.body.classList.add("mobile");
@@ -65,6 +66,7 @@ export default function App() {
             <Outlet />
         </main>
         <WindowManager />
+        <EquipmentManager />
         </>
     )
 }

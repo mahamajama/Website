@@ -1,26 +1,28 @@
-import { useSelector } from "react-redux";
 
-import { selectInventory, allItems } from "../../gameSlice";
 
-export default function Inventory({ onItemSelected }) {
-    const inventory = useSelector(selectInventory);
-
+export default function Inventory({ items, onItemSelected, selected }) {
     return (
         <div id="inventory">
-            <h2 className="menu-label">Inventory</h2>
+            <div className="inventory-title-container">
+                <h2>Inventory</h2>
+            </div>
             <div className="inventory-items-container">
-                {inventory.map(item => {
+                {items.map((item, i) => {
+                    const selectedClass = selected === i ? 'selected' : '';
                     return (
                         <button 
-                            className="inventory-item-button" 
-                            onClick={()=> onItemSelected(item)}
-                            key={item.name} 
+                            className={`inventory-item-button ${selectedClass}`} 
+                            onClick={()=> onItemSelected(item, i)}
+                            key={`inventoryListing_${item.name}`} 
                             type="button"
                         >
                             <img src={item.icon} />
                         </button>
                     );
                 })}
+                {!items.length &&
+                    <p>You currently have no items</p>
+                }
             </div>
         </div>
     );

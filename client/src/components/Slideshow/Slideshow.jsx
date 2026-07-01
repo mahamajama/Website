@@ -2,6 +2,20 @@ import { useState, useEffect, useRef } from "react";
 
 import './slideshow.css';
 
+const sampleSlides = [
+    {
+        title: 'Slide Title',
+        content: <img src="images/portfolio/projects/jamashop/jamashop_slide01.gif" />,
+        description: 
+            `This is a slide description. It isn't displayed by default.
+
+            Primary features:
+            - Formats paragraphs
+            - Formats unordered lists
+            - That's it, really`,
+    },
+];
+
 export default function Slideshow({ slides, onChange }) {
     const [position, setPosition] = useState(0);
 

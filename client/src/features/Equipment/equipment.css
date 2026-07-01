@@ -1,0 +1,58 @@
+
+
+
+#equipment-manager {
+    width: 100%;
+    padding: 8px;
+}
+
+.equipment-info {
+    position: relative;
+    z-index: 999;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 12px;
+    background-color: rgba(56, 56, 56, 0.603);
+    border: 2px solid white;
+    transform: translateY(-110%);
+    transition: transform 0.3s linear;
+
+    &.open {
+        transform: translateY(0);
+    }
+}
+
+.equipment-info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.equipment-info h4 {
+    position: absolute;
+    top: 6px;
+    font-size: 0.6em;
+}
+
+.equipment-info img {
+    width: 33px;
+    image-rendering: pixelated;
+}
+
+.equipment-info p {
+    flex: 1;
+    padding-top: 8px;
+    font-size: 1.2em;
+    line-height: 1.2;
+}
+
+.equipment-info button {
+    font-family: 'SierraSCI';
+    font-size: 0.5em;
+    flex: 0 0 60px;
+    height: 60px;
+}
+
+
+

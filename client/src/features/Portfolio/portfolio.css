@@ -25,9 +25,52 @@
 }
 
 @media (max-width: 720px) {
-  .portfolio-section-name {
+    .portfolio-section-name {
         font-size: 5em;
     }
+}
+
+@media (max-width: 450px) {
+    .portfolio-section-name {
+        font-size: 4em;
+    }
+}
+
+@media (max-width: 360px) {
+    .portfolio-section-name {
+        font-size: 3em;
+    }
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 auto;
+    opacity: 1;
+    animation: letterDance1 0.4s alternate cubic-bezier(.69,.05,.95,.89) infinite;
+    transition: opacity 1s ease-in-out;
+
+    &.hidden {
+        opacity: 0;
+    }
+}
+
+.scroll-indicator h1 {
+    font-size: 24px;
+    font-family: 'MyName';
+    letter-spacing: -3px;
+    text-align: center;
+}
+
+.indicator-arrow {
+    width: 24px;
+    height: 24px;
+    border-bottom: 10px solid white;
+    border-right: 10px solid white;
+    margin: 16px auto 24px;
+    rotate: 45deg;
 }
 
 
@@ -66,6 +109,25 @@
 .skills-listing h3 {
     font-size: 1em;
     font-family: 'JetBrainsMono', monospace;
+}
+
+@media (max-width: 450px) {
+    .skills-listing {
+        height: 46px;
+        padding: 4px 10px 4px 4px;
+        gap: 16px;
+        border-top: 2px solid white;
+        border-bottom: 1px dashed white;
+    }
+
+    .skills-listing img {
+        width: 32px;
+    }
+
+    .skills-listing h3 {
+        font-size: 0.85em;
+        font-family: 'JetBrainsMono', monospace;
+    }
 }
 
 
@@ -283,6 +345,22 @@
 
 
 /* --- CONTACT */
+
+.contact-listing {
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 18px;
+}
+
+.contact-listing p {
+    flex: 1 0 140px;
+    background-color: rgba(204, 204, 204, 0.178);
+    text-align: right;
+}
+
+.contact-listing-link {
+    flex: 2 0 256px;
+}
 
 #portfolio-contact a {
     font-family: 'JetBrainsMono', monospace;

@@ -143,7 +143,7 @@ function MNotification({ message, index, open }) {
     return (
         <div className={`menu-notification index-${index} ${open ? 'open' : ''}`}>
             <div className="menu-notification-wrapper">
-                {toRender && toRender}
+                {toRender}
             </div>
         </div>
     );
