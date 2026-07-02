@@ -364,6 +364,10 @@
     flex: 2 0 256px;
 }
 
+.contact-listing-link button {
+    margin-left: 8px;
+}
+
 #portfolio-contact a {
     font-family: 'JetBrainsMono', monospace;
     color: rgb(0, 255, 0);

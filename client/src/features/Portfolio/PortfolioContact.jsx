@@ -15,10 +15,8 @@ export default function PortfolioContact() {
                 <div className="contact-listing">
                     <p>email -:: </p>
                     <div className="contact-listing-link">
-                        <a href={`mailto:${emailAddress}`}>
-                            {`${emailAddress} `} 
-                            <button onClick={handleCopyEmail}>copy</button>
-                        </a> 
+                        <a href={`mailto:${emailAddress}`}>{emailAddress}</a> 
+                        <button onClick={handleCopyEmail}>copy</button>
                     </div>
                 </div>
                 <div className="contact-listing">

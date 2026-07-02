@@ -95,16 +95,16 @@ export default function Menu() {
                 <ItemDetails items={inventory} selected={selectedItem} open={isOpen} />
                 <div id="menu" className={isOpen ? 'open' : ''}>
                     <div className="menu-content-container content-container">
-                        <nav className="main-nav">
-                            {isDebugMode && 
-                            <>
-                                <NavLink to="/" className="nav-link">HOME</NavLink>
-                                <NavLink to="/ludozone" className="nav-link">LUDOZONE</NavLink>
-                                <NavLink to="/coolbox" className="nav-link">COOLBOX</NavLink>
-                                <NavLink to="/shader" className="nav-link">OLDWOOD</NavLink>
+                        {isDebugMode && 
+                        <>
+                            <nav className="main-nav">
+                                    <NavLink to="/" className="nav-link">HOME</NavLink>
+                                    <NavLink to="/ludozone" className="nav-link">LUDOZONE</NavLink>
+                                    <NavLink to="/coolbox" className="nav-link">COOLBOX</NavLink>
+                                    <NavLink to="/shader" className="nav-link">OLDWOOD</NavLink>
+                            </nav>
                             </>
-                            }
-                        </nav>
+                        }
                         <Inventory items={inventory} onItemSelected={handleItemSelected} selected={selectedItem} />
                     </div>
                 </div>
