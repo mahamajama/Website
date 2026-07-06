@@ -143,6 +143,11 @@
     color: black;
 }
 
+.project-details ::selection, .project-details ::-moz-selection {
+    background-color: black;
+    color: #00FF00;
+}
+
 .frame button {
     font-family: "SierraSCI", monospace;
 }
@@ -239,6 +244,11 @@
     flex: 0 2 350px;
 }
 
+.project-details-skills ::selection, .project-details-skills ::-moz-selection {
+    background-color: #00FF00;
+    color: black;
+}
+
 @media (max-width: 800px) {
     .project-details-info {
         flex-flow: column;
@@ -318,8 +328,15 @@
 
 /* --- EXPERIENCE */
 
+.experience {
+    padding: 24px;
+    background-color: rgba(0, 0, 0, 0.84);
+    border: 3px solid white;
+    border-radius: 12px;
+}
+
 .experience + .experience {
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 .experience ul {
