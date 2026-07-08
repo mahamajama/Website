@@ -48,7 +48,7 @@ const jamashopData = {
                 Giving users ownership of their own store pages means you can't just design a store page and be done with it. You have to build a system to generate store pages based on a set of preferences.`,
         },
         {
-            title: 'Potential',
+            title: 'Skeleton Crew',
             content: <img src="images/portfolio/projects/jamashop/jamashop_slide03.gif" />,
             description: 
                 `Time and manpower could go a long way making this a more fully-featured product, but in keeping with the project's original scope as an educational exercise and portfolio piece, I just couldn't justify continuing development.
@@ -92,7 +92,7 @@ const blueditData = {
             
                 The broader concept grew from the name itself. Rather than RED-dit, my alternate version would be BLUE-dit. Get it?
                 
-                So, with that vague idea in mind, and considering the limitations of Reddit's free API, I set out to make a Reddit browsing experience focused around a calming, blue, aquatic theme; sort of a form over function piece with an emphasis on appealing animations and transitions.`,
+                So, with that idea in mind, and considering the limitations of Reddit's free API, I set out to make a Reddit browsing experience focused around a calming, blue, aquatic theme; sort of a form over function piece with an emphasis on appealing animations and transitions.`,
         },
         {
             title: 'Three.js',
@@ -141,7 +141,7 @@ const cgcnData = {
                 Key considerations included:
                 - Showcasing their connectedness in the capital
                 - Bridging the gap to their new PR branch
-                - Kewywords: 'slick', 'boutique', 'silver'
+                - Keywords: 'slick', 'boutique', 'silver'
                 
                 After finalizing the logo and creating the design guide, the next few weeks would be making sure every piece of collateral was consistent with the new style. That meant designing new business cards, envelopes, letterheads, email signatures, handbooks, and most importantly proposals, which needed several variations depending on their intended audience.`,
         },
@@ -151,7 +151,7 @@ const cgcnData = {
             description: 
                 `Of course, after a rebranding, the need for a new website is kind of self-evident.
                 
-                My role was to provide the design for the main page of the new website, establish it's design language, and work closely with leadership to ensure it included features to emphasize key priorities, like deep connections and positive press.
+                My role was to provide the design for the main page of the new website, establish its design language, and work closely with leadership to ensure it included features to emphasize key priorities, like deep connections and positive press.
                 
                 Then we contracted a design firm we had a previous relationship with to develop the site and extend the design across the remaining pages.`,
         },
