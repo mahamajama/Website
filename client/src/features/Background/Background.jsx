@@ -6,14 +6,18 @@ import './background.css';
 import Mystify from "./Mystify";
 import { selectMenuIsOpen } from "../../gameSlice";
 import ScrollingBackground from "./ScrollingBackground";
+import OldWoodBackground from "./OldWoodBackground";
+import ParallaxBackground from "./ParallaxBackground";
 
-export default function Background({ type }) {
+export default function Background({ type, children }) {
     const [background, setBackground] = useState(<Mystify />);
     const menuIsOpen = useSelector(selectMenuIsOpen);
 
     const backgrounds = {
         mystify: <Mystify />,
         hotFire: <ScrollingBackground imageSrc="/images/hotfire/hotFire_bg.jpg" xSpeed={-0.3} ySpeed={-0.17} />,
+        oldWood: <ParallaxBackground />,
+        oldWood2: <OldWoodBackground imageSrc="/images/hotfire/hotFire_bg.jpg" />,
     }
 
     useEffect(() => {
@@ -27,6 +31,7 @@ export default function Background({ type }) {
         {createPortal(    
             <div id="background" className={menuIsOpen ? 'blurred' : ''}>
                 {background}
+                {children}
             </div>
         , document.getElementById('root'))}
         </>

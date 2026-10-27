@@ -1,0 +1,64 @@
+
+.dialogue {
+    height: 100%;
+}
+
+
+.dialogue p {
+    text-align: left;
+}
+
+.dialogue ol {
+    padding-inline-start: 2em;
+    font-family: 'JetBrainsMono', mono;
+}
+
+.dialogue li::marker {
+    font-size: 12px;
+}
+
+.dialogue-option {
+    text-align: left;
+}
+
+.dialogue-option + .dialogue-option {
+    margin-top: 8px;
+}
+
+.dialogue-option button {
+    width: 100%;
+    padding: 5px 0 5px 12px;
+    font-family: 'GloryQuest';
+    font-size: 1.4em;
+    text-align: left;
+}
+
+.dialogue-box {
+    position: absolute;
+    padding: 8px;
+    background-color: blue;
+    width: 260px;
+    transition: scale 0.2s cubic-bezier(0,.5,0,1.1);
+    transform-origin: top left;
+    scale: 0.4 0;
+
+    &.open {
+        scale: 1 1;
+    }
+}
+
+.dialogue-box h1 {
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.window .dialogue {
+    height: 320px;
+}
+
+.window .dialogue ol {
+    padding-inline-start: 2em;
+}
+
+
+

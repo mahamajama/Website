@@ -7,6 +7,7 @@ export const gameSlice = createSlice({
         isPortfolio: true,
         flags: [],
         inventory: [],
+        dialogueLines: {},
         equipped: null,
         menuIsOpen: false,
         notification: null,
@@ -46,6 +47,12 @@ export const gameSlice = createSlice({
         setCover: (state, action) => {
             state.cover = action.payload;
         },
+        setDialogieLine: (state, action) => {
+            const { name, line } = action.payload;
+            if (name && line) {
+                state.dialogueLines[name] = line;
+            }
+        }
     },
 });
 
@@ -73,5 +80,6 @@ export const selectInventory = (state) => state.game.inventory;
 export const selectEquipped = (state) => state.game.equipped;
 export const selectMenuIsOpen = (state) => state.game.menuIsOpen;
 export const selectNotification = (state) => state.game.notification;
-export const { setIsDebugMode, setIsPortfolio, setFlag, addToInventory, updateItem, setEquipped, setMenuIsOpen, setNotification } = gameSlice.actions;
+export const selectDialogueLines = (state) => state.game.dialogueLines;
+export const { setIsDebugMode, setIsPortfolio, setFlag, addToInventory, updateItem, setEquipped, setMenuIsOpen, setNotification, setDialogieLine } = gameSlice.actions;
 export default gameSlice.reducer;

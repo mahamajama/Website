@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
-import { selectWindows, selectFocused, setFocused, closeWindow } from "./windowsSlice";
 
-export default function Window({ children, id, label, text, persistent }) {
+import { selectWindows, selectFocused, setFocused, closeWindow } from "./windowsSlice";
+import Dialogue from "../Dialogue/Dialogue";
+
+export default function Window({ id, focused, label, text, script, persistent, closed, onClose }) {
     const dispatch = useDispatch();
     const [mounted, setMounted] = useState(false);
-
-    const windows = useSelector(selectWindows);
-    const focusedWindow = useSelector(selectFocused);
 
     const windowRef = useRef(null);
     const topBar = useRef(null);
@@ -33,9 +32,43 @@ export default function Window({ children, id, label, text, persistent }) {
         windowRef.current.style.transform = `translate(${newX}px, ${newY}px)`;
     }
 
+    function focusWindow() {
+        windowRef.current.classList.add('focused');
+        windowRef.current.parentElement.appendChild(windowRef.current);
+
+        if (persistent) {
+            content.current.classList.remove('close');
+            topBar.current.classList.remove('close');
+            windowRef.current.classList.remove('closed');
+            content.current.classList.add('open');
+            topBar.current.classList.add('open');
+            windowRef.current.classList.add('open');
+        }
+    }
+
+    function close() {
+        closeButton.current.enabled = false;
+        content.current.classList.add('close');
+        topBar.current.classList.add('close');
+        content.current.addEventListener('animationend', onWindowClosed, true);
+    }
+
+    function onWindowClosed(e) {
+        if (e.animationName === `closeWindow`) {
+            content.current.removeEventListener('animationend', onWindowClosed, true);
+            if (onClose) onClose();
+            if (persistent) {
+                windowRef.current.classList.add('closed');
+                windowRef.current.classList.remove('focused');
+                dispatch(setFocused(null));
+            }
+            dispatch(closeWindow(id));
+        }
+    }
+
     useEffect(() => {
         if (!mounted && windowRef.current) setMounted(true);
-    }, [windowRef.current])
+    }, [windowRef.current]);
 
     useEffect(() => {
         if (mounted) {
@@ -52,7 +85,7 @@ export default function Window({ children, id, label, text, persistent }) {
             windowRef.current.style.left = 0;
             windowRef.current.style.transform = `translate(calc(${xPos}px - 50%), calc(${yPos}px - 50%))`;
         }
-    }, [mounted])
+    }, [mounted]);
 
     useEffect(() => {
         if (topBar.current) {
@@ -63,37 +96,29 @@ export default function Window({ children, id, label, text, persistent }) {
                 topBar.current?.removeEventListener('mousedown', onMouseDown, false);
             }
         }
-    }, [topBar.current])
+    }, [topBar.current]);
 
     useEffect(() => {
         if (windowRef.current) {
-            if (focusedWindow === id) {
-                windowRef.current.classList.add('focused');
-                windowRef.current.parentElement.appendChild(windowRef.current);
+            if (focused) {
+                focusWindow();
             } else {
                 windowRef.current.classList.remove('focused');
             }
         }
-    }, [focusedWindow])
+    }, [focused]);
+
+    useEffect(() => {
+        if (closed) close();
+        else focusWindow();
+    }, [closed])
 
     function handleClickContainer(e) {
         dispatch(setFocused(id));
     }
 
     function handleClickClose(e) {
-        closeButton.current.enabled = false;
-        content.current.classList.add('close');
-        topBar.current.classList.add('close');
-        content.current.addEventListener('animationend', onWindowClosed);
-        function onWindowClosed(e) {
-            content.current.removeEventListener('animationend', onWindowClosed);
-            if (persistent) {
-                windowRef.current.classList.add('closed');
-                windowRef.current.classList.remove('focused');
-            } else {
-                dispatch(closeWindow(id));
-            }
-        }
+        close();
     }
 
     return (
@@ -105,7 +130,7 @@ export default function Window({ children, id, label, text, persistent }) {
             </div>
             <div className="window-content open" ref={content}>
                 {text && text.map(line => <p key={uuidv4()}>{line}</p>)}
-                {children}
+                {script && <Dialogue script={script} open={!closed} onEnd={close} />}
             </div>
         </div>
         </>

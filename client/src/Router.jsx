@@ -7,6 +7,7 @@ import ShaderBackground from "./features/Background/ShaderBackground";
 import Ludozone from "./features/Ludozone/Ludozone";
 import PortfolioRedirect from "./features/Portfolio/PortfolioRedirect";
 import HotFire from "./features/HotFire/HotFire";
+import OldWood from "./features/OldWood/OldWood";
 
 export default function Router() {
   return (
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
             { 
                 path: 'hotfire',
                 Component: HotFire,
+            },
+            { 
+                path: 'oldwood',
+                Component: OldWood,
             },
         ],
     },

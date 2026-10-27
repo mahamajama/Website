@@ -78,7 +78,7 @@ export default function LetterBomb({ initCount, letterIndex, onExplode, hasExplo
                 <p className={`letter-bomb-countdown select-disable ${showCount ? 'visible' : ''}`} ref={countdown}>{count}</p>
             </div>
         }
-        <img className={`letter-explosion select-disable`} src={null} ref={explosion} />
+        <img className={`letter-explosion select-disable`} src={null} ref={explosion} draggable="false" />
         </>
     );
 }

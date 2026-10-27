@@ -50,7 +50,6 @@ export default function EquipmentManager() {
         if (!roastingTimer.current) {
             roastingTimer.current = new timer(onFinishedRoasting, roastTime);
         } else {
-            console.log(roastingTimer.current);
             roastingTimer.current.start();
         }
     }

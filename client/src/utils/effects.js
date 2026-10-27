@@ -84,6 +84,17 @@ export const ignoreTransformTransitionTemp = (element, targetTransform, delay) =
   }, delay * 1000);
 }
 
+export const restartAnimation = (element, animation = null) => {
+  if (!animation) {
+    animation = window.getComputedStyle(element).animation;
+  }
+  if (animation) {
+    element.style.animation = null;
+    element.offsetHeight;
+    element.style.animation = animation;
+  }
+}
+
 
 //  MY NAME FUNCTIONS
 import blipSrc from '/sounds/SSB_Dot.wav?url';

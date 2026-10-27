@@ -1,21 +1,20 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 
+import { getTranslate } from '../../utils/helpers';
 import { setJColor, selectJColor, explodeO1, explodeO2, selectO1Exploded, selectO2Exploded, flipLetters, selectFlipped, setSPosition, selectSPosition } from "./homeSlice";
 import { setFlag, selectFlags, allItems, selectInventory } from '../../gameSlice';
 import { openWindow } from '../../components/Windows/windowsSlice';
-import PageTitle from "../../components/PageTitle/PageTitle";
 import ItemPickup from '../../components/Items/ItemPickup';
 import LetterBomb from '../../components/PageTitle/LetterBomb';
+import PageTitleLetter from '../../components/PageTitle/PageTitleLetter.jsx';
 
 import sound from '../Audio/audio.js';
 import { blipSound } from '../../utils/effects';
-import { getTranslate } from '../../utils/helpers';
 
 import totakasSrc from '/sounds/MP_totakasSong.wav?url';
-import PageTitleLetter from '../../components/PageTitle/PageTitleLetter.jsx';
-import { Link } from 'react-router';
 const totakasSong = new sound(totakasSrc);
 
 export default function HomeTitle() {

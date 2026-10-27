@@ -1,0 +1,208 @@
+
+
+
+
+#tall-tree-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    bottom: var(--negative-global-padding);
+}
+
+#tall-tree-container img {
+    display: block;
+    image-rendering: pixelated;
+}
+
+.old-wood-background-container {
+    z-index: -9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1300px;
+    background-image: linear-gradient(rgb(141, 108, 172), rgb(211, 42, 233) 9%, rgb(201, 17, 26) 30%, rgb(24, 3, 75));
+}
+
+#sun {
+    image-rendering: pixelated;
+    position: fixed;
+    top: 20px;
+    left: 10%;
+}
+
+#crow-container {
+    position: absolute;
+    top: 1020px;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
+
+#crow {
+    position: absolute;
+    top: 136px;
+    left: 180px;
+    width: 80px;
+    height: 90px;
+    image-rendering: pixelated;
+}
+
+#wise-owl-container {
+    position: absolute;
+    top: 3587px;
+}
+
+#wise-owl {
+    width: 78px;
+    height: 112px;
+    image-rendering: pixelated;
+}
+
+#wise-owl-container .dialogue-box {
+    position: absolute;
+    top: 90px;
+    left: -90px;
+    transform-origin: center top;
+}
+
+#schlemos-house-container {
+    position: absolute;
+    top: 7770px;
+    width: 216px;
+    height: 220px;
+}
+
+#tall-tree-door-button {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+#tall-tree-door-button:hover,
+#tall-tree-door-button:active  {
+    background-color: transparent;
+}
+
+#schlemo {
+    position: absolute;
+    top: 286px;
+    left: 114px;
+    width: 72px;
+    height: 159px;
+}
+
+#schlemo .dialogue-box {
+    position: absolute;
+    top: -275px;
+    left: -110px;
+    transform-origin: 62% bottom;
+}
+
+#schlemo-head-container {
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    width: 54px;
+    height: 72px;
+    will-change: transform;
+    transform: translate(0px, 0px);
+
+    &.idle {
+        animation: schlemoHeadIdle 1.2s linear infinite;
+    }
+
+    &.greeting {
+        animation: schlemoHeadGreeting 0.7s linear forwards;
+    }
+
+    &.excited {
+        animation: schlemoHeadExcited 0.4s reverse ease-out infinite;
+    }
+
+    &.love {
+        animation: schlemoHeadLove 0.6s reverse ease-out infinite;
+    }
+}
+
+#schlemo-head {
+    width: 54px;
+    height: 72px;
+    will-change: transform;
+    transform: translate(0px, 0px);
+}
+
+@keyframes schlemoHeadIdle {
+    0% {
+        transform: translate(3px, 2px);
+    }
+    30% {
+        transform: translate(0px, -3px);
+    }
+    50% {
+        transform: translate(-1px, 2px);
+    }
+    80% {
+        transform: translate(-2px, 5px);
+    }
+    90% {
+        transform: translate(0px, 3px);
+    }
+    100% {
+        transform: translate(3px, 2px);
+    }
+}
+
+@keyframes schlemoHeadGreeting {
+    0% {
+        transform: translate(3px, 2px);
+    }
+    30% {
+        transform: translate(-1px, 3px);
+    }
+    50% {
+        transform: translate(-3px, -1px);
+    }
+    100% {
+        transform: translate(0px, -3px);
+    }
+}
+
+@keyframes schlemoHeadExcited {
+    0% {
+        transform: translate(0px, -3px);
+    }
+    33% {
+        transform: translate(3px, 0px);
+    }
+    66% {
+        transform: translate(-2px, 2px);
+    }
+    100% {
+        transform: translate(0px, -3px);
+    }
+}
+
+@keyframes schlemoHeadLove {
+    0% {
+        transform: translate(9px, -6px);
+    }
+    33% {
+        transform: translate(12px, -3px);
+    }
+    66% {
+        transform: translate(7px, -1px);
+    }
+    100% {
+        transform: translate(9px, -6px);
+    }
+}
+
+
+
+
+
+
+

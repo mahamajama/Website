@@ -33,7 +33,7 @@ export const getList = createAsyncThunk(
             const response = await get(path);
             return response;
         } catch(error) {
-            throw error;;
+            throw error;
         }
     }
 );

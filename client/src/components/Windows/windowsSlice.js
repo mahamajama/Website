@@ -8,11 +8,24 @@ export const windowsSlice = createSlice({
     },
     reducers: {
         openWindow: (state, action) => {
-            state.windows.push(action.payload);
-            state.focused = action.payload.id;
+            const newWindow = action.payload;
+            const currentWindow = state.windows.find(window => window.id === newWindow.id);
+            if (currentWindow) {
+                currentWindow.closed = false;
+            } else {
+                state.windows.push(newWindow);
+                //console.log(`New window: ${newWindow.id}`);
+            }
+            state.focused = newWindow.id;
+            //console.log(`Focused window: ${newWindow.id}`);
         },
         closeWindow: (state, action) => {
-            state.windows = state.windows.filter(window => window.id !== action.payload);
+            const currentWindow = state.windows.find(window => window.id === action.payload);
+            if (currentWindow && currentWindow.persistent) {
+                currentWindow.closed = true;
+            } else {
+                state.windows = state.windows.filter(window => window.id !== action.payload);
+            }
         },
         setFocused: (state, action) => {
             state.focused = action.payload;

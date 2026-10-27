@@ -149,11 +149,47 @@ const cgcnData = {
             title: 'And a Website',
             content: <img src="images/portfolio/projects/cgcn/cgcn_slide02.png" />,
             description: 
-                `Of course, after a rebranding, the need for a new website is kind of self-evident.
+                `After a rebranding, the need for a new website is self-evident.
                 
                 My role was to provide the design for the main page of the new website, establish its design language, and work closely with leadership to ensure it included features to emphasize key priorities, like deep connections and positive press.
                 
                 Then we contracted a design firm we had a previous relationship with to develop the site and extend the design across the remaining pages.`,
+        },
+    ]
+}
+
+const raceMountainData = {
+    name: 'Race Mountain',
+    tagline: `An arcade racing RPG.`,
+    skills: {
+        tech: [],
+        tools: [
+            skills.unity,
+            skills.blender,
+            skills.photoshop,
+        ],
+        languages: [
+            skills.csharp,
+        ],
+    },
+    slides: [
+        {
+            title: '3-Dimensional Video Games',
+            content: <img src="images/portfolio/projects/cgcn/cgcn_slide01.png" />,
+            description: 
+                `This is where I give an overview of what the game is and what task I took on for myself`,
+        },
+        {
+            title: 'Climbing Race Mountain',
+            content: <img src="images/portfolio/projects/cgcn/cgcn_slide01.png" />,
+            description: 
+                `This is where I talk more in depth about what that entailed; what I was able to accomplish, and how.`,
+        },
+        {
+            title: 'Check Engine',
+            content: <img src="images/portfolio/projects/cgcn/cgcn_slide01.png" />,
+            description: 
+                `This is where I go over the challenges and hangups I had and speak of them as lessons learned.`,
         },
     ]
 }
