@@ -97,7 +97,8 @@ export default function ProjectDetails({ className, data }) {
                 <h1 className="project-details-name">{data.name}</h1>
                 <p className="project-details-tagline">{data.tagline}</p>
                 {data.slides && <Slideshow slides={data.slides} onChange={handleSlideChanged} />}
-                {data.demoUrl && <a className="project-link" href={datademoUrl}>View live demo...</a>}
+                {data.demoUrl && <a className="project-link" href={data.demoUrl} target="_blank">View live demo...</a>}
+                {data.gitHubUrl && <a className="project-link" href={data.gitHubUrl} target="_blank">View on GitHub...</a>}
                 <div className="project-details-info">
                     <div className="project-details-description">
                         {data.slides && <h4 className="project-slide-counter">{`${currentSlideIndex + 1}/${data.slides.length}`}</h4>}

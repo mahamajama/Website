@@ -1,0 +1,166 @@
+import { skills } from "./portfolioHelpers";
+
+// Jamashop
+
+export const jamashopData = {
+    name: 'Jamashop',
+    tagline: 'An e-commerce web app where users create their own shops.',
+    gitHubUrl: 'https://github.com/mahamajama/JamaShop',
+    skills: {
+        tech: [
+            skills.react,
+            skills.express,
+            skills.node,
+        ],
+        tools: [
+            skills.photoshop,
+        ],
+        languages: [
+            skills.javascript,
+            skills.css,
+            skills.html,
+        ],
+    },
+    slides: [
+        {
+            title: 'Town Square',
+            content: <img src="images/portfolio/projects/jamashop/jamashop_slide01.gif" />,
+            description: 
+                `Jamashop is a web app that lets users create storefronts to sell their own products. Anyone with an account can create multiple personalized shops with customizable layouts, and follow your favorite shops so you never miss a new product.
+
+                Primary features:
+                - Create multiple storefronts for different products, or one giant store with multiple categories
+                - Use a simple image cropping tool to upload custom profile and product images
+                - Filter products using a tag based system
+                - Shop sections can be added, removed, and customized using product tags and section names
+                - Save your favorite shops for quick access and updates`,
+        },
+        {
+            title: 'Vendors',
+            content: <img src="images/portfolio/projects/jamashop/jamashop_slide02.png" />,
+            description: 
+                `The idea came from the first database design I sketched out for the as-yet-unplanned e-commerce app. There was a table called Vendors that seemed like a waste to only have one row. 
+                
+                And if there were to be multiple vendors, the users themselves could fill this role, creating a site that could feature a virtually infinite range of products and stores. And given this wide range of possibilities, a one-size-fits-all approach didn't make sense. There needed to be some level of personalization to match users' individual audiences. Of course, this added a layer of complexity that was quite challenging to take on as a solo developer making a portfolio project.
+            
+                But the benefit of this complexity is that it forced me to learn a lot about how to manage the interweaving web of dependencies that come with focusing your software on user generated content. 
+                
+                Giving users ownership of their own store pages means you can't just design a store page and be done with it. You have to build a system to generate store pages based on a set of preferences.`,
+        },
+        {
+            title: 'Skeleton Crew',
+            content: <img src="images/portfolio/projects/jamashop/jamashop_slide03.gif" />,
+            description: 
+                `Time and manpower could go a long way making this a more fully-featured product, but in keeping with the project's original scope as an educational exercise and portfolio piece, I just couldn't justify continuing development.
+                
+                I knew going into it that I would barely be able to scratch the surface of the feature set this concept would entail as a full product. So, I had to make a lot of compromises in choosing what to focus on.
+                
+                Roadmap for potential future development:
+                - Social features: Mainly a comment/review system with the option to rate products out of 5 stars
+                - Custom backgrounds: Currently, navigating the app changes the background randomly from a sample set. The intention is to allow vendors to set custom backgrounds based on shop section
+                - More custom shop sections: These might include a set of featured products, cross-promotional ad sections, or customer comment highlights
+                - Improving the product management flow: I would like to add a way to manage/add/remove products in bulk to make the process less cumbersome`,
+        },
+    ]
+}
+
+
+// Bluedit
+
+export const blueditData = {
+    name: 'Bluedit',
+    tagline: 'A more calming way to browse reddit.',
+    gitHubUrl: 'https://github.com/mahamajama/Bluedit',
+    skills: {
+        tech: [
+            skills.react,
+            skills.express,
+            skills.node,
+            skills.three,
+        ],
+        tools: [
+            skills.photoshop,
+        ],
+        languages: [
+            skills.javascript,
+            skills.css,
+            skills.html,
+        ],
+    },
+    slides: [
+        {
+            title: 'One-dit, Two-dit, Reddit, Bluedit',
+            content: <video loop autoPlay={true} src="images/portfolio/projects/bluedit/bluedit_slide01.mp4" type="video/mp4" />,
+            description: 
+                `The goal for Bluedit was to create a reddit browsing app using whatever scraps of functionality I could squeeze out of Reddit's JSON API.
+            
+                The broader concept grew from the name itself. Rather than RED-dit, my alternate version would be BLUE-dit. Get it?
+                
+                So, with that idea in mind, and considering the limitations of Reddit's free API, I set out to make a Reddit browsing experience focused around a calming, blue, aquatic theme; sort of a form over function piece with an emphasis on appealing animations and transitions.`,
+        },
+        {
+            title: 'Three.js',
+            content: <img src="images/portfolio/projects/bluedit/bluedit_slide02.png" />,
+            description: 
+                `I decided on this direction because it finally gave me an excuse to dip my toes into learning Three.js.
+                
+                The setup was relatively simple, involving only three elements and minimal 3D modeling: a ground plane, a water surface plane, and a skybox, to simulate a calm, shallow pond setting.
+                
+                The hard part was making the water's surface ripple on each click, dynamically reflecting, refracting, and responding to the light and environment. The result of this ended up being surprisingly convincing and, combined with a feast's worth of css animations, created a smooth and engaging user experience.`,
+        },
+        {
+            title: 'Choppy Waters',
+            content: <img src="images/portfolio/projects/bluedit/bluedit_slide03.gif" />,
+            description: 
+                `After some testing and some research, it became clear the approach I took to create these ripple effects was perhaps not the most optimal.
+                
+                The rippling effect was achieved by updating the individual vertices on the water plane every frame of animation, setting their velocity based on their distance from the user's mouse position. And although that worked fine on my desktop computer, directly manipulating a 3D mesh is a very CPU intensive process that lower-end devices like smartphones can struggle to keep up with.
+                
+                A better approach would have been to make a shader, shifting that processing load onto the GPU. Unfortunately, learning how to code shaders wasn't within the scope of this project (though it's definitely something I plan on exploring in the future). Slightly reducing the number of effects when on a mobile device helped, but a universal solution would be more ideal.`
+            ,
+        },
+    ]
+}
+
+
+// CGCN
+
+export const cgcnData = {
+    name: 'CGCN Rebrand',
+    tagline: `A rebranding for the company's new era.`,
+    skills: {
+        tech: [],
+        tools: [
+            skills.photoshop,
+            skills.illustrator,
+            skills.indesign,
+            skills.xd,
+        ],
+        languages: [],
+    },
+    slides: [
+        {
+            title: 'First Order of Business',
+            content: <img src="images/portfolio/projects/cgcn/cgcn_slide01.png" />,
+            description: 
+                `I was told a rebranding was imminent on my first day at CGCN, when I met their CEO. CGCN's branding had been the same since the company started, and they wanted an update to signal their success.
+            
+                Key considerations included:
+                - Showcasing their connectedness in the capital
+                - Bridging the gap to their new PR branch
+                - Keywords: 'slick', 'boutique', 'silver'
+                
+                After finalizing the logo and creating the design guide, the next few weeks would be making sure every piece of collateral was consistent with the new style. That meant designing new business cards, envelopes, letterheads, email signatures, handbooks, and most importantly proposals, which needed several variations depending on their intended audience.`,
+        },
+        {
+            title: 'And a Website',
+            content: <img src="images/portfolio/projects/cgcn/cgcn_slide02.png" />,
+            description: 
+                `Of course, after a rebranding, the need for a new website is kind of self-evident.
+                
+                My role was to provide the design for the main page of the new website, establish its design language, and work closely with leadership to ensure it included features to emphasize key priorities, like deep connections and positive press.
+                
+                Then we contracted a design firm we had a previous relationship with to develop the site and extend the design across the remaining pages.`,
+        },
+    ]
+}
